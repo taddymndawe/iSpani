@@ -1,0 +1,2041 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<meta name="theme-color" content="#2B57DC" />
+<title>iSpani — South Africa's ICT talent marketplace</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;450;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#16181D; --ink-soft:#383C44; --muted:#71757E;
+    --blue:#2D5BE0; --blue-600:#2247B5; --blue-50:#EDF2FE;
+    --grey-bg:#F6F7F9; --grey-100:#EDEEF2; --border:#E7E9ED; --border-2:#D8DBE1; --white:#FFFFFF;
+    --shadow-xs:0 1px 2px rgba(22,24,29,.05);
+    --shadow-sm:0 2px 8px rgba(22,24,29,.06);
+    --shadow-md:0 10px 30px rgba(22,24,29,.09);
+    --shadow-lg:0 24px 60px rgba(22,24,29,.14);
+    --radius:14px; --radius-sm:10px; --radius-xs:8px; --maxw:1160px;
+    --ease:cubic-bezier(.22,.61,.36,1);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;}
+  body{margin:0;font-family:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink-soft);background:var(--white);line-height:1.6;-webkit-font-smoothing:antialiased;letter-spacing:-.005em;overflow-x:hidden;}
+  h1,h2,h3,h4,h5{font-family:"Plus Jakarta Sans","Inter",sans-serif;color:var(--ink);line-height:1.1;margin:0;letter-spacing:-.02em;}
+  p{margin:0;}
+  a{color:var(--blue);text-decoration:none;}
+  a:hover{color:var(--blue-600);}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px;}
+  .eyebrow{font-family:"Plus Jakarta Sans",sans-serif;font-size:.74rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--blue);}
+
+  /* Buttons */
+  .btn{font-family:"Plus Jakarta Sans",sans-serif;font-weight:600;font-size:.92rem;border-radius:var(--radius-xs);padding:.72rem 1.25rem;border:1.5px solid transparent;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:.5rem;transition:transform .18s var(--ease),background .18s var(--ease),box-shadow .18s var(--ease),color .18s var(--ease),border-color .18s var(--ease);white-space:nowrap;-webkit-tap-highlight-color:transparent;}
+  .btn:focus-visible{outline:3px solid var(--blue);outline-offset:2px;}
+  .btn-primary{background:var(--blue);color:#fff;box-shadow:0 1px 2px rgba(45,91,224,.28);}
+  .btn-primary:hover{background:var(--blue-600);transform:translateY(-1px);box-shadow:0 6px 18px rgba(45,91,224,.26);}
+  .btn-outline{background:var(--white);color:var(--ink);border-color:var(--border-2);}
+  .btn-outline:hover{background:var(--grey-100);border-color:#c2c6cd;transform:translateY(-1px);}
+  .btn-white{background:#fff;color:var(--blue);box-shadow:0 8px 22px rgba(10,20,60,.22);}
+  .btn-white:hover{background:#eef3ff;transform:translateY(-1px);}
+  .btn-light{background:transparent;color:#fff;border-color:rgba(255,255,255,.4);}
+  .btn-light:hover{background:#fff;color:var(--blue);transform:translateY(-1px);}
+  .btn-ghost{background:transparent;color:var(--ink-soft);border-color:transparent;padding:.6rem .8rem;}
+  .btn-ghost:hover{background:var(--grey-100);color:var(--ink);}
+  .btn-sm{padding:.55rem .9rem;font-size:.85rem;}
+  .btn-lg{padding:.9rem 1.6rem;font-size:1rem;}
+  .btn-block{width:100%;}
+
+  /* ===== Thick blue header ===== */
+  header.nav{position:sticky;top:0;z-index:60;background:linear-gradient(92deg,#2C58DD 0%,#244FBE 100%);transition:box-shadow .25s;}
+  header.nav.scrolled{box-shadow:0 8px 26px rgba(13,24,72,.30);}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:72px;}
+  .brand{display:flex;align-items:center;gap:.55rem;font-family:"Plus Jakarta Sans",sans-serif;font-weight:800;font-size:1.28rem;color:#fff;letter-spacing:-.03em;}
+  header.nav .brand .brand-name{font-size:1.6rem;line-height:1;letter-spacing:-.04em;}
+  .brand .dot{position:relative;width:34px;height:34px;border-radius:9px;display:grid;place-items:center;color:var(--blue);font-size:1rem;font-weight:800;background:transparent;}
+  .brand .dot-bg{position:absolute;inset:0;border-radius:9px;background:#fff;animation:logoBgIn .55s var(--ease) both;}
+  .brand .dot-txt{position:relative;z-index:1;color:var(--blue);animation:logoShake .5s ease-out .5s both;}
+  @keyframes logoBgIn{from{opacity:0;transform:scale(.55);}to{opacity:1;transform:scale(1);}}
+  @keyframes logoShake{
+    0%{opacity:0;transform:translateX(0) rotate(0);}
+    1%{opacity:1;}
+    20%{transform:translateX(-1.5px) rotate(-3deg);}
+    40%{transform:translateX(1.5px) rotate(3deg);}
+    60%{transform:translateX(-1px) rotate(-1.5deg);}
+    80%{transform:translateX(1px) rotate(1.5deg);}
+    100%{transform:translateX(0) rotate(0);}
+  }
+  .brand small{font-weight:500;font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.72);display:block;margin-top:-2px;}
+  .nav-links{display:flex;align-items:center;gap:.2rem;}
+  .nav-links a.link{color:rgba(255,255,255,.86);font-family:"Plus Jakarta Sans",sans-serif;font-weight:500;font-size:.9rem;padding:.5rem .8rem;border-radius:8px;transition:background .15s,color .15s;}
+  .nav-links a.link:hover{background:rgba(255,255,255,.14);color:#fff;}
+  .nav-cta{display:flex;align-items:center;gap:.5rem;margin-left:.5rem;}
+  header.nav .nav-cta .btn-outline{background:transparent;color:#fff;border-color:rgba(255,255,255,.42);}
+  header.nav .nav-cta .btn-outline:hover{background:#fff;color:var(--blue);}
+  header.nav .nav-cta .btn-primary{background:#fff;color:var(--blue);box-shadow:0 4px 14px rgba(10,20,60,.2);}
+  header.nav .nav-cta .btn-primary:hover{background:#eef3ff;color:var(--blue);}
+  .hamburger{display:none;background:transparent;border:0;cursor:pointer;padding:.4rem;color:#fff;-webkit-tap-highlight-color:transparent;}
+  .hamburger svg{width:28px;height:28px;}
+
+  /* ===== Hero (gradient banner) ===== */
+  .hero{
+    position:relative;color:#fff;overflow:hidden;
+    /* Static base — the animated blobs layer on top */
+    background:linear-gradient(135deg,#2B57DC 0%,#1E3A8A 60%,#122051 100%);
+  }
+
+  /* Dot-grid overlay */
+  .hero::before{
+    content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+    background-image:radial-gradient(rgba(255,255,255,.13) 1px, transparent 1.4px);
+    background-size:24px 24px;opacity:.5;
+    -webkit-mask:linear-gradient(180deg,#000 0%,transparent 82%);
+    mask:linear-gradient(180deg,#000 0%,transparent 82%);
+  }
+
+  /* ── Animated gradient blobs ── */
+  .hero-blob{
+    position:absolute;border-radius:50%;pointer-events:none;
+    will-change:transform;
+    filter:blur(0px); /* blur handled per-blob via SVG or radius */
+  }
+  /* Blob 1 — large top-right light sweep */
+  .hero-blob-1{
+    width:820px;height:520px;
+    top:-18%;right:-12%;z-index:0;
+    background:radial-gradient(ellipse at center,rgba(132,178,255,.66) 0%,transparent 68%);
+    animation:blob1 13s ease-in-out infinite;
+  }
+  /* Blob 2 — mid-left indigo */
+  .hero-blob-2{
+    width:680px;height:580px;
+    top:8%;left:-10%;z-index:0;
+    background:radial-gradient(ellipse at center,rgba(70,122,245,.50) 0%,transparent 62%);
+    animation:blob2 17s ease-in-out infinite;
+  }
+  /* Blob 3 — bottom-right deep navy */
+  .hero-blob-3{
+    width:700px;height:700px;
+    bottom:-40%;right:10%;z-index:0;
+    background:radial-gradient(ellipse at center,rgba(12,22,70,.74) 0%,transparent 60%);
+    animation:blob3 20s ease-in-out infinite;
+  }
+  /* Blob 4 — small warm accent (very subtle centre-left) */
+  .hero-blob-4{
+    width:360px;height:360px;
+    top:30%;left:20%;z-index:0;
+    background:radial-gradient(ellipse at center,rgba(98,148,255,.30) 0%,transparent 65%);
+    animation:blob1 11s ease-in-out infinite reverse;
+  }
+
+  @keyframes blob1{
+    0%,100%{transform:translate(0,0) scale(1);}
+    25%     {transform:translate(55px,-38px) scale(1.06);}
+    50%     {transform:translate(20px,50px) scale(.96);}
+    75%     {transform:translate(-40px,-20px) scale(1.03);}
+  }
+  @keyframes blob2{
+    0%,100%{transform:translate(0,0) scale(1);}
+    30%     {transform:translate(-44px,36px) scale(1.05);}
+    60%     {transform:translate(38px,-44px) scale(.95);}
+    80%     {transform:translate(18px,22px) scale(1.02);}
+  }
+  @keyframes blob3{
+    0%,100%{transform:translate(0,0) scale(1);}
+    40%     {transform:translate(52px,-56px) scale(1.08);}
+    70%     {transform:translate(-36px,30px) scale(.94);}
+  }
+
+  .hero-grid{position:relative;z-index:2;display:grid;grid-template-columns:1.02fr .98fr;gap:56px;align-items:center;padding:84px 0 92px;}
+  .hero .eyebrow{color:#bcd2ff;}
+
+  /* ── Slide-up entrance animations ── */
+  @keyframes slideUp{
+    from{opacity:0;transform:translateY(28px);}
+    to  {opacity:1;transform:translateY(0);}
+  }
+  @keyframes fadeIn{
+    from{opacity:0;}
+    to  {opacity:1;}
+  }
+  .hero .eyebrow{animation:slideUp .7s var(--ease) .05s both;}
+  .hero h1{
+    color:#fff;font-size:clamp(2.6rem,5.4vw,4.05rem);font-weight:800;
+    letter-spacing:-.035em;line-height:1.0;margin-top:1rem;
+    animation:slideUp .8s var(--ease) .2s both;
+  }
+  .hero h1 .hl{color:#c3d6ff;}
+  .lead-br{display:none;}
+  .hero .lead{
+    color:rgba(255,255,255,.88);font-size:1.15rem;margin-top:1.2rem;max-width:32ch;
+    animation:slideUp .7s var(--ease) .38s both;
+  }
+  .hero-cta{display:flex;gap:.7rem;margin-top:2rem;flex-wrap:wrap;animation:slideUp .7s var(--ease) .52s both;}
+  .hero-stats{display:flex;gap:2.6rem;margin-top:2.6rem;flex-wrap:wrap;animation:fadeIn .9s var(--ease) .72s both;}
+  .hs-n{font-family:"Plus Jakarta Sans",sans-serif;font-weight:800;font-size:2rem;color:#fff;letter-spacing:-.03em;line-height:1;}
+  .hs-l{font-size:.78rem;color:rgba(255,255,255,.7);margin-top:.35rem;font-weight:500;}
+
+  .hero-vis{position:relative;height:auto;animation:rise .7s var(--ease) both;display:flex;flex-direction:column;gap:0;}
+  @keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+  .hero-illo{width:100%;display:block;border-radius:16px 16px 0 0;overflow:hidden;}
+  .hero-illo svg{width:100%;height:auto;display:block;}
+  .vcard{background:#fff;border:1px solid rgba(255,255,255,.5);border-radius:var(--radius);box-shadow:var(--shadow-lg);padding:20px;color:var(--ink-soft);}
+  .vcard.front{border-radius:0 0 var(--radius) var(--radius);box-shadow:var(--shadow-lg);margin-top:0;}
+  .vcard.back{display:none;}
+  .vcard .row{display:flex;align-items:center;gap:13px;}
+  .avatar{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;font-family:"Plus Jakarta Sans",sans-serif;font-weight:700;color:var(--ink);font-size:1rem;flex-shrink:0;background:var(--grey-100);border:1px solid var(--border);}
+  .vcard .name{font-family:"Plus Jakarta Sans",sans-serif;font-weight:700;color:var(--ink);font-size:1rem;}
+  .vcard .sub{font-size:.78rem;color:var(--muted);}
+  .ring{position:relative;width:54px;height:54px;flex-shrink:0;margin-left:auto;}
+  .ring svg{transform:rotate(-90deg);}
+  .ring .track{stroke:var(--grey-100);}
+  .ring .prog{stroke:var(--blue);transition:stroke-dashoffset 1s var(--ease);}
+  .ring .val{position:absolute;inset:0;display:grid;place-items:center;font-family:"Plus Jakarta Sans",sans-serif;font-weight:700;font-size:.84rem;color:var(--blue);}
+  .chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:14px;}
+  .chip{background:var(--grey-100);color:var(--ink-soft);font-size:.72rem;font-weight:600;padding:.24rem .58rem;border-radius:7px;font-family:"Plus Jakarta Sans",sans-serif;}
+  .chip.match{background:var(--blue-50);color:var(--blue);}
+  .vcard .barline{height:6px;background:var(--grey-100);border-radius:99px;margin-top:16px;overflow:hidden;}
+  .vcard .barline > i{display:block;height:100%;width:78%;background:var(--blue);border-radius:99px;}
+
+  /* Section scaffold */
+  section{padding:90px 0;}
+  .sec-head{max-width:620px;margin-bottom:46px;}
+  .sec-head h2{font-size:clamp(1.8rem,3.1vw,2.45rem);font-weight:700;margin-top:.6rem;}
+  .sec-head p{color:var(--muted);font-size:1.05rem;margin-top:.7rem;}
+  .bg-grey{background:var(--grey-bg);}
+  .match-dark{position:relative;overflow:hidden;background:var(--ink);}
+  .match-dark::after{content:"";position:absolute;top:-30%;right:-8%;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(45,91,224,.28),transparent 62%);pointer-events:none;}
+  .match-dark .wrap{position:relative;z-index:1;}
+
+  /* Visual flow */
+  .flow-sec{padding:64px 0;}
+  .flow{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;align-items:start;gap:6px;}
+  .flow-step{text-align:center;padding:6px 10px;}
+  .flow-step .fi{width:74px;height:74px;border-radius:20px;background:var(--blue-50);color:var(--blue);display:grid;place-items:center;margin:0 auto 18px;}
+  .flow-step .fi svg{width:34px;height:34px;}
+  .flow-step h4{font-size:1.16rem;font-weight:700;}
+  .flow-step p{color:var(--muted);font-size:.9rem;margin-top:.35rem;}
+  .flow-arrow{color:var(--border-2);display:grid;place-items:center;padding-top:24px;}
+  .flow-arrow svg{width:30px;height:30px;}
+
+  /* ── Flow section sequential entrance animations ── */
+  /* Keyframes */
+  @keyframes flowStepIn{
+    from{opacity:0;transform:translateY(22px);}
+    to  {opacity:1;transform:translateY(0);}
+  }
+  @keyframes flowArrowDraw{
+    from{stroke-dashoffset:1;}
+    to  {stroke-dashoffset:0;}
+  }
+  @keyframes flowArrowFadeIn{
+    from{opacity:0;}to{opacity:1;}
+  }
+  @keyframes flowIconPop{
+    0%  {transform:scale(.65);}
+    65% {transform:scale(1.10);}
+    100%{transform:scale(1);}
+  }
+
+  /* Initial hidden state – set only when JS has added will-animate */
+  .flow.will-animate>*{opacity:0;}
+
+  /* Arrow path draw setup (only while hidden or animating) */
+  .flow.will-animate .farr,
+  .flow.animated .farr{stroke-dasharray:1;}
+  .flow.will-animate .farr{stroke-dashoffset:1;}
+
+  /* ── Step 1 ── delay 0s */
+  .flow.animated>.flow-step:nth-child(1){
+    animation:flowStepIn .48s var(--ease) 0s both;
+  }
+  .flow.animated>.flow-step:nth-child(1) .fi{
+    animation:flowIconPop .38s var(--ease) .14s both;
+  }
+
+  /* ── Arrow 1 ── delay .52s — arrow draws AFTER step 1 lands */
+  .flow.animated>.flow-arrow:nth-child(2){
+    animation:flowArrowFadeIn .08s linear .52s both;
+  }
+  .flow.animated>.flow-arrow:nth-child(2) .farr{
+    animation:flowArrowDraw .52s var(--ease) .52s both;
+  }
+
+  /* ── Step 2 ── delay 1.08s — appears as arrow finishes */
+  .flow.animated>.flow-step:nth-child(3){
+    animation:flowStepIn .48s var(--ease) 1.08s both;
+  }
+  .flow.animated>.flow-step:nth-child(3) .fi{
+    animation:flowIconPop .38s var(--ease) 1.22s both;
+  }
+
+  /* ── Arrow 2 ── delay 1.60s */
+  .flow.animated>.flow-arrow:nth-child(4){
+    animation:flowArrowFadeIn .08s linear 1.60s both;
+  }
+  .flow.animated>.flow-arrow:nth-child(4) .farr{
+    animation:flowArrowDraw .52s var(--ease) 1.60s both;
+  }
+
+  /* ── Step 3 ── delay 2.16s — appears as second arrow finishes */
+  .flow.animated>.flow-step:nth-child(5){
+    animation:flowStepIn .48s var(--ease) 2.16s both;
+  }
+  .flow.animated>.flow-step:nth-child(5) .fi{
+    animation:flowIconPop .38s var(--ease) 2.30s both;
+  }
+
+  /* Featured talent (landing — 3 cards, no sidebar) */
+  .feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+  .feat-cta{text-align:center;margin-top:36px;}
+  .sec-head-row{display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:16px;max-width:none;margin-bottom:36px;}
+  @media(max-width:760px){.feat-grid{grid-template-columns:1fr;}}
+
+  /* Full-page catalog overlay */
+  .catalog-overlay{position:fixed;inset:0;background:var(--white);z-index:75;
+    display:none;overflow-y:auto;-webkit-overflow-scrolling:touch;}
+  .catalog-overlay.open{display:block;animation:catIn .3s var(--ease);}
+  @keyframes catIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+  /* Smart Match pop-up sheet */
+  .wizpage-overlay{
+    position:fixed;inset:0;z-index:85;
+    display:none;align-items:flex-end;justify-content:center;
+    background:rgba(22,24,29,.52);
+    -webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);
+  }
+  .wizpage-overlay.open{display:flex;animation:ovIn .22s ease;}
+  .wizpage-sheet{
+    background:#fff;border-radius:22px 22px 0 0;
+    width:100%;max-width:560px;
+    max-height:88vh;overflow-y:auto;-webkit-overflow-scrolling:touch;
+    animation:sheetUp .32s var(--ease);
+    box-shadow:0 -12px 40px rgba(22,24,29,.20);
+  }
+  @keyframes sheetUp{from{opacity:0;transform:translateY(100%)}to{opacity:1;transform:none}}
+  .wizpage-head{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:18px 22px 16px;border-bottom:1px solid var(--border);
+    position:sticky;top:0;background:#fff;z-index:2;
+  }
+  .wizpage-head h3{margin:0;font-size:1.18rem;font-weight:700;color:var(--ink);}
+  .wizpage-head .close-x{
+    background:var(--grey-100);border:0;width:36px;height:36px;border-radius:10px;
+    cursor:pointer;font-size:1.3rem;color:var(--muted);line-height:1;
+    -webkit-tap-highlight-color:transparent;transition:background .15s;
+  }
+  .wizpage-head .close-x:hover{background:var(--border-2);}
+  .wizpage-mount{padding:22px;}
+  .catalog-head{position:sticky;top:0;background:rgba(255,255,255,.94);
+    -webkit-backdrop-filter:saturate(180%) blur(12px);backdrop-filter:saturate(180%) blur(12px);
+    border-bottom:1px solid var(--border);padding:14px 24px;z-index:2;
+    display:flex;align-items:center;gap:18px;}
+  .catalog-head .back-btn{font-family:"Plus Jakarta Sans",sans-serif;font-weight:700;font-size:.9rem;
+    background:var(--grey-100);border:0;border-radius:var(--radius-xs);
+    padding:.6rem 1rem;cursor:pointer;color:var(--ink);display:flex;align-items:center;gap:.4rem;
+    flex-shrink:0;transition:background .15s;-webkit-tap-highlight-color:transparent;}
+  .catalog-head .back-btn:hover{background:var(--border-2);}
+  .catalog-head .ch-txt h3{margin:0;font-size:1.18rem;font-weight:700;color:var(--ink);}
+  .catalog-head .ch-txt .eyebrow{margin-bottom:2px;}
+  .catalog-body{padding:32px 0 100px;}
+
+  /* Categories */
+  .cat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+  .cat-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:24px;cursor:pointer;transition:transform .2s var(--ease),box-shadow .2s var(--ease),border-color .2s var(--ease);-webkit-tap-highlight-color:transparent;}
+  .cat-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-md);border-color:var(--border-2);}
+  .cat-icon{width:50px;height:50px;border-radius:12px;display:grid;place-items:center;margin-bottom:16px;background:var(--grey-100);color:var(--ink);transition:background .2s,color .2s;}
+  .cat-icon svg{width:26px;height:26px;}
+  .cat-card:hover .cat-icon{background:var(--blue-50);color:var(--blue);}
+  .cat-card h3{font-size:1.14rem;font-weight:700;}
+  .cat-card .cat-meta{margin-top:16px;padding-top:14px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;font-size:.84rem;color:var(--muted);font-weight:500;}
+  .cat-card .cat-go{color:var(--blue);font-weight:600;font-family:"Plus Jakarta Sans",sans-serif;display:inline-flex;align-items:center;gap:.3rem;transition:gap .18s var(--ease);}
+  .cat-card:hover .cat-go{gap:.55rem;}
+
+  /* Smart Match */
+  .wizard{background:#fff;border:1px solid var(--border);border-radius:20px;overflow:hidden;box-shadow:var(--shadow-md);}
+  .wiz-grid{display:grid;grid-template-columns:.86fr 1.14fr;}
+  .wiz-left{background:var(--ink);color:#fff;padding:46px 40px;}
+  .wiz-left .eyebrow{color:#8fa9f3;}
+  .wiz-left h2{color:#fff;font-size:1.95rem;font-weight:700;margin-top:.5rem;}
+  .wiz-left p{color:#a7abb4;margin-top:.9rem;font-size:.98rem;}
+  /* Visual step column + phone figure inside wiz-left */
+  .wiz-inner{display:flex;gap:18px;align-items:flex-start;margin-top:26px;}
+  .wvs{display:flex;flex-direction:column;flex:1;min-width:0;}
+  .wstep{opacity:.38;transition:opacity .28s;}
+  .wstep.active{opacity:1;}
+  .wvs-row{display:flex;align-items:center;gap:11px;}
+  .wvs-icon{width:38px;height:38px;border-radius:11px;background:rgba(255,255,255,.09);border:1.5px solid rgba(255,255,255,.14);display:grid;place-items:center;flex-shrink:0;transition:background .25s,border-color .25s;}
+  .wvs-icon svg{width:19px;height:19px;color:rgba(255,255,255,.72);}
+  .wstep.active .wvs-icon{background:var(--blue);border-color:var(--blue);}
+  .wstep.active .wvs-icon svg{color:#fff;}
+  .wvs-txt strong{display:block;font-family:"Plus Jakarta Sans",sans-serif;font-weight:700;font-size:.9rem;color:#fff;line-height:1.1;}
+  .wvs-txt em{display:block;font-style:normal;font-size:.72rem;color:#686f80;margin-top:1px;}
+  .wstep.active .wvs-txt em{color:#8fa9f3;}
+  .wvs-line{width:2px;height:18px;background:rgba(255,255,255,.12);margin:4px 0 4px 18px;border-radius:2px;}
+  .wstep.active + .wstep .wvs-line,.wstep.active .wvs-line{background:rgba(45,91,224,.55);}
+
+  /* Animated phone figure */
+  .wiz-phone-fig{flex-shrink:0;width:108px;}
+  .wiz-phone-fig svg{width:100%;height:auto;display:block;overflow:visible;}
+  @keyframes figBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+  @keyframes notifFloat{
+    0%{opacity:0;transform:translateY(0) scale(.8);}
+    18%{opacity:1;transform:translateY(-4px) scale(1);}
+    72%{opacity:.95;transform:translateY(-22px) scale(1);}
+    100%{opacity:0;transform:translateY(-26px) scale(.88);}
+  }
+  @keyframes screenPulse{0%,100%{opacity:.55}50%{opacity:1}}
+  @keyframes dotBlink{0%,100%{opacity:.3}50%{opacity:1}}
+  .pfig{animation:figBob 4.8s ease-in-out infinite;}
+  .pnotif-a{animation:notifFloat 3.4s ease-out infinite;}
+  .pnotif-b{animation:notifFloat 3.4s ease-out infinite 1.7s;}
+  .pscreen-active{animation:screenPulse 2.6s ease-in-out infinite;}
+  .pdot{animation:dotBlink 1.4s ease-in-out infinite;}
+  /* phone figure stays visible on mobile */
+  .wiz-open-btn{display:none;}
+  .wiz-right{background:#fff;padding:38px 38px 32px;position:relative;min-height:440px;}
+  .wiz-panel{display:none;animation:fadeSlide .4s var(--ease);}
+  .wiz-panel.show{display:block;}
+  @keyframes fadeSlide{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+  .wiz-panel h4{font-size:1.16rem;font-weight:700;margin-bottom:.35rem;}
+  .wiz-panel .hint{color:var(--muted);font-size:.88rem;margin-bottom:20px;}
+  .opt-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+  .opt{border:1.5px solid var(--border);border-radius:var(--radius-sm);padding:.85rem .95rem;cursor:pointer;display:flex;align-items:center;gap:.65rem;font-weight:500;font-size:.9rem;color:var(--ink);transition:border-color .15s,background .15s,transform .12s;background:#fff;-webkit-tap-highlight-color:transparent;}
+  .opt:hover{border-color:var(--border-2);transform:translateY(-1px);}
+  .opt.sel{border-color:var(--blue);background:var(--blue-50);color:var(--blue);}
+  .opt .oi{width:30px;height:30px;border-radius:8px;background:var(--grey-100);color:var(--ink);display:grid;place-items:center;flex-shrink:0;transition:background .15s,color .15s;}
+  .opt.sel .oi{background:#fff;color:var(--blue);}
+  .opt .oi svg{width:18px;height:18px;}
+  .skill-pick{display:flex;flex-wrap:wrap;gap:8px;}
+  .spill{border:1.5px solid var(--border);background:#fff;border-radius:99px;padding:.5rem .95rem;font-size:.85rem;font-weight:600;font-family:"Plus Jakarta Sans",sans-serif;cursor:pointer;color:var(--ink);transition:all .14s;-webkit-tap-highlight-color:transparent;}
+  .spill:hover{border-color:var(--border-2);}
+  .spill.sel{background:var(--blue);color:#fff;border-color:var(--blue);}
+  .budget-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:6px;}
+  .seg{display:inline-flex;border:1.5px solid var(--border);border-radius:var(--radius-sm);overflow:hidden;background:#fff;max-width:100%;}
+  .seg button{border:0;background:#fff;padding:.6rem .95rem;font-family:"Plus Jakarta Sans",sans-serif;font-weight:600;font-size:.85rem;cursor:pointer;color:var(--ink-soft);transition:background .14s,color .14s;border-right:1px solid var(--border);-webkit-tap-highlight-color:transparent;}
+  .seg button:last-child{border-right:0;}
+  .seg button.sel{background:var(--ink);color:#fff;}
+  .field-label{font-family:"Plus Jakarta Sans",sans-serif;font-weight:600;font-size:.82rem;color:var(--ink);display:block;margin:18px 0 9px;}
+  .wiz-nav{display:flex;justify-content:space-between;align-items:center;margin-top:26px;padding-top:20px;border-top:1px solid var(--border);gap:10px;}
+  .step-tag{font-size:.82rem;color:var(--muted);}
+  .analyzing{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:66px 0;text-align:center;}
+  .spinner{width:44px;height:44px;border-radius:50%;border:3.5px solid var(--grey-100);border-top-color:var(--blue);animation:spin .8s linear infinite;}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .analyzing .a-txt{font-family:"Plus Jakarta Sans",sans-serif;font-weight:600;color:var(--ink);}
+  .analyzing .a-sub{font-size:.84rem;color:var(--muted);}
+  .result-card{
+    display:flex;flex-direction:column;gap:10px;
+    border:1px solid var(--border);border-radius:var(--radius-sm);
+    padding:14px;margin-bottom:11px;
+    transition:transform .18s,box-shadow .18s,border-color .18s;
+  }
+  .result-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-sm);border-color:var(--border-2);}
+  /* Top row: avatar | info | small ring */
+  .rc-top{display:flex;align-items:flex-start;gap:11px;}
+  .rc-info{flex:1;min-width:0;}
+  .rc-info .name{font-family:"Plus Jakarta Sans",sans-serif;font-weight:700;color:var(--ink);font-size:.97rem;}
+  .rc-info .sub{font-size:.74rem;color:var(--muted);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  /* Bottom row: chips | rate */
+  .rc-foot{display:flex;align-items:center;justify-content:space-between;gap:8px;}
+  .rc-foot .chips{flex:1;display:flex;flex-direction:row;flex-wrap:nowrap;gap:5px;overflow:hidden;margin:0;}
+  .rc-rate{font-family:"Plus Jakarta Sans",sans-serif;font-weight:700;color:var(--ink);font-size:.9rem;white-space:nowrap;flex-shrink:0;}
+  .rc-rate span{font-weight:400;font-size:.72rem;color:var(--muted);}
+  /* Small ring for match results */
+  .ring-sm{width:38px;height:38px;}
+  .ring-sm svg{width:38px;height:38px;}
+  .ring-sm .val{font-size:.66rem;}
+
+  /* Talent */
+  .browse-grid{display:grid;grid-template-columns:256px 1fr;gap:28px;align-items:start;}
+  .filters{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:22px;position:sticky;top:96px;}
+  .filters .fgroup{padding:16px 0;border-bottom:1px solid var(--border);}
+  .filters .fgroup:first-child{padding-top:0;}
+  .filters .fgroup:last-child{border-bottom:0;padding-bottom:0;}
+  .flabel{font-family:"Plus Jakarta Sans",sans-serif;font-weight:700;font-size:.74rem;color:var(--ink);text-transform:uppercase;letter-spacing:.07em;margin-bottom:12px;display:block;}
+  .check{display:flex;align-items:center;gap:.55rem;padding:.4rem 0;font-size:.9rem;cursor:pointer;color:var(--ink-soft);}
+  .check input{accent-color:var(--blue);width:18px;height:18px;cursor:pointer;}
+  .search-box{display:flex;align-items:center;gap:.55rem;background:var(--grey-bg);border:1.5px solid var(--border);border-radius:var(--radius-sm);padding:.65rem .75rem;margin-bottom:20px;transition:border-color .15s,box-shadow .15s;}
+  .search-box:focus-within{border-color:var(--blue);box-shadow:0 0 0 3px var(--blue-50);background:#fff;}
+  .search-box svg{width:18px;height:18px;color:var(--muted);flex-shrink:0;}
+  .search-box input{border:0;background:transparent;outline:none;width:100%;font-family:"Inter",sans-serif;font-size:1rem;color:var(--ink);}
+  input[type=range]{width:100%;accent-color:var(--blue);height:24px;}
+  .range-val{font-family:"Plus Jakarta Sans",sans-serif;font-weight:700;color:var(--blue);font-size:.85rem;}
+  .browse-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;flex-wrap:wrap;gap:10px;}
+  .browse-top .count{color:var(--muted);font-size:.92rem;}
+  .browse-top select{font-family:"Plus Jakarta Sans",sans-serif;font-weight:500;border:1.5px solid var(--border);border-radius:var(--radius-sm);padding:.55rem .8rem;color:var(--ink);background:#fff;cursor:pointer;font-size:.9rem;}
+  .talent-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  .tcard{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:20px;transition:transform .2s var(--ease),box-shadow .2s var(--ease),border-color .2s;cursor:pointer;display:flex;flex-direction:column;-webkit-tap-highlight-color:transparent;}
+  .tcard:hover{transform:translateY(-3px);box-shadow:var(--shadow-md);border-color:var(--border-2);}
+  .tcard .thead{display:flex;gap:13px;align-items:flex-start;}
+  .verified{display:inline-flex;align-items:center;gap:.25rem;background:var(--blue-50);color:var(--blue);font-size:.68rem;font-weight:700;padding:.16rem .45rem;border-radius:6px;font-family:"Plus Jakarta Sans",sans-serif;margin-top:5px;}
+  .verified svg{width:12px;height:12px;}
+  .tcard .name{font-family:"Plus Jakarta Sans",sans-serif;font-weight:700;color:var(--ink);font-size:1.04rem;}
+  .tcard .uni{font-size:.8rem;color:var(--muted);margin-top:1px;}
+  .tcard .blurb{font-size:.88rem;color:var(--ink-soft);margin:14px 0;flex:1;line-height:1.55;}
+  .tcard .tfoot{display:flex;align-items:center;justify-content:space-between;margin-top:auto;padding-top:14px;border-top:1px solid var(--border);}
+  .stars{color:var(--ink);font-size:.85rem;font-weight:700;font-family:"Plus Jakarta Sans",sans-serif;display:flex;align-items:center;gap:.3rem;}
+  .stars svg{width:14px;height:14px;fill:var(--ink);}
+  .tcard .rate{font-family:"Plus Jakarta Sans",sans-serif;font-weight:700;color:var(--ink);font-size:1rem;}
+  .tcard .rate span{font-weight:400;font-size:.78rem;color:var(--muted);}
+  .no-results{grid-column:1/-1;text-align:center;padding:54px;color:var(--muted);background:#fff;border:1px dashed var(--border-2);border-radius:var(--radius);}
+
+  /* Trust */
+  .safety{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+  .safe-item{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:24px;}
+  .safe-item .si{width:46px;height:46px;border-radius:12px;background:var(--blue-50);color:var(--blue);display:grid;place-items:center;margin-bottom:16px;}
+  .safe-item .si svg{width:23px;height:23px;}
+  .safe-item h4{font-size:1rem;font-weight:700;}
+  .safe-item p{font-size:.85rem;color:var(--muted);margin-top:.4rem;line-height:1.5;}
+
+  /* CTA */
+  .cta-band{background:var(--ink);border-radius:20px;padding:62px;text-align:center;position:relative;overflow:hidden;}
+  .cta-band::after{content:"";position:absolute;top:-40%;right:-10%;width:480px;height:480px;border-radius:50%;background:radial-gradient(circle,rgba(45,91,224,.28),transparent 62%);pointer-events:none;}
+  .cta-band h2{color:#fff;font-size:clamp(1.8rem,3vw,2.5rem);font-weight:700;position:relative;z-index:2;letter-spacing:-.025em;}
+  .cta-band p{color:#a7abb4;margin:1rem auto 0;max-width:42ch;position:relative;z-index:2;}
+  .cta-band .hero-cta{justify-content:center;position:relative;z-index:2;margin-top:2rem;}
+
+  /* Footer */
+  footer{background:var(--ink);color:#9a9ea7;padding:60px 0 28px;}
+  footer .brand{color:#fff;}
+  footer .brand .dot{background:var(--blue);color:#fff;}
+  footer .brand small{color:#7d818b;}
+  .foot-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:34px;}
+  .foot-about{color:#888c95;font-size:.88rem;margin-top:16px;max-width:34ch;line-height:1.6;}
+  footer h5{font-family:"Plus Jakarta Sans",sans-serif;color:#fff;font-size:.78rem;text-transform:uppercase;letter-spacing:.09em;margin:0 0 16px;font-weight:700;}
+  footer ul{list-style:none;padding:0;margin:0;}
+  footer li{margin-bottom:.6rem;}
+  footer li a{color:#9a9ea7;font-size:.9rem;}
+  footer li a:hover{color:#fff;}
+  .foot-bottom{border-top:1px solid #2b2e35;margin-top:40px;padding-top:22px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;color:#7d818b;font-size:.82rem;}
+  .foot-bottom .meta{display:inline-flex;align-items:center;gap:.4rem;}
+  .foot-bottom .meta svg{width:14px;height:14px;color:#8fa9f3;}
+
+  /* Modal */
+  .overlay{position:fixed;inset:0;background:rgba(22,24,29,.5);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);z-index:90;display:none;align-items:center;justify-content:center;padding:20px;}
+  .overlay.show{display:flex;animation:ovIn .2s ease;}
+  @keyframes ovIn{from{opacity:0}to{opacity:1}}
+  .modal{background:#fff;border-radius:18px;max-width:560px;width:100%;max-height:90vh;overflow-y:auto;-webkit-overflow-scrolling:touch;box-shadow:var(--shadow-lg);animation:modIn .3s var(--ease);}
+  @keyframes modIn{from{opacity:0;transform:translateY(16px) scale(.985)}to{opacity:1;transform:none}}
+  .modal-head{padding:24px 26px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:flex-start;gap:16px;position:sticky;top:0;background:#fff;z-index:2;}
+  .modal-x{background:var(--grey-100);border:0;width:40px;height:40px;border-radius:10px;cursor:pointer;font-size:1.3rem;color:var(--muted);flex-shrink:0;transition:background .15s,color .15s;line-height:1;-webkit-tap-highlight-color:transparent;}
+  .modal-x:hover{background:var(--border-2);color:var(--ink);}
+  .modal-body{padding:24px 26px;}
+  .stat-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:24px;}
+  .stat{flex:1;min-width:110px;background:var(--grey-bg);border:1px solid var(--border);border-radius:11px;padding:13px 15px;}
+  .stat .sl{font-size:.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;}
+  .stat .sv{font-family:"Plus Jakarta Sans",sans-serif;font-weight:700;color:var(--ink);font-size:1.05rem;margin-top:3px;}
+  .matrix-row{margin-bottom:13px;}
+  .matrix-row .mh{display:flex;justify-content:space-between;font-size:.86rem;margin-bottom:6px;}
+  .matrix-row .mh .lvl{font-family:"Plus Jakarta Sans",sans-serif;font-weight:600;color:var(--blue);}
+  .bar{height:7px;background:var(--grey-100);border-radius:99px;overflow:hidden;}
+  .bar > i{display:block;height:100%;background:var(--blue);border-radius:99px;width:0;transition:width .9s var(--ease);}
+  .port-item{display:flex;gap:13px;align-items:center;padding:13px;border:1px solid var(--border);border-radius:var(--radius-sm);margin-bottom:10px;}
+  .port-item .pi{width:38px;height:38px;border-radius:9px;background:var(--grey-100);color:var(--ink);display:grid;place-items:center;flex-shrink:0;}
+  .port-item .pt{font-family:"Plus Jakarta Sans",sans-serif;font-weight:600;color:var(--ink);font-size:.92rem;}
+  .port-item .pd{font-size:.8rem;color:var(--muted);}
+  .modal-foot{display:flex;gap:10px;padding-top:10px;}
+  .form-field{margin-bottom:17px;}
+  .form-field label{font-family:"Plus Jakarta Sans",sans-serif;font-weight:600;font-size:.85rem;color:var(--ink);display:block;margin-bottom:7px;}
+  .form-field input,.form-field select,.form-field textarea{width:100%;border:1.5px solid var(--border);border-radius:var(--radius-sm);padding:.78rem .85rem;font-family:"Inter",sans-serif;font-size:1rem;color:var(--ink);background:#fff;transition:border-color .15s,box-shadow .15s;}
+  .form-field input:focus,.form-field select:focus,.form-field textarea:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px var(--blue-50);}
+  .form-field.err input,.form-field.err select,.form-field.err textarea{border-color:#d4493a;}
+  .form-field .errmsg{color:#c1402f;font-size:.78rem;margin-top:6px;display:none;}
+  .form-field.err .errmsg{display:block;}
+
+  /* Timeline pill picker */
+  .tpill-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:2px;}
+  .tpill{
+    border:1.5px solid var(--border);border-radius:var(--radius-sm);background:#fff;
+    padding:.6rem .5rem;cursor:pointer;text-align:center;
+    font-family:"Plus Jakarta Sans",sans-serif;font-size:.8rem;font-weight:600;color:var(--ink);
+    transition:border-color .15s,background .15s,color .15s,transform .12s;
+    line-height:1.25;-webkit-tap-highlight-color:transparent;
+  }
+  .tpill span{display:block;font-family:"Inter",sans-serif;font-weight:400;font-size:.72rem;color:var(--muted);margin-top:2px;}
+  .tpill:hover{border-color:var(--border-2);transform:translateY(-1px);}
+  .tpill.sel{border-color:var(--blue);background:var(--blue-50);color:var(--blue);}
+  .tpill.sel span{color:var(--blue);opacity:.8;}
+  .form-field.err .tpill-grid{outline:1.5px solid #d4493a;border-radius:var(--radius-sm);}
+  @media(max-width:480px){.tpill-grid{grid-template-columns:repeat(2,1fr);}}
+
+  /* ===== Auth & profile ===== */
+  .auth-modal{max-width:440px;}
+  .auth-body{padding:28px 30px 30px;}
+  .auth-body h3{font-size:1.5rem;font-weight:800;text-align:center;letter-spacing:-.02em;}
+  .auth-sub{text-align:center;color:var(--muted);font-size:.92rem;margin:.5rem 0 22px;}
+  .oauth-btn{display:flex;align-items:center;justify-content:center;gap:.6rem;width:100%;
+    padding:.78rem 1rem;border:1.5px solid var(--border-2);border-radius:var(--radius-xs);
+    background:#fff;color:var(--ink);font-family:"Plus Jakarta Sans",sans-serif;font-weight:600;
+    font-size:.92rem;cursor:pointer;margin-bottom:11px;transition:background .15s,border-color .15s;
+    -webkit-tap-highlight-color:transparent;}
+  .oauth-btn:hover{background:var(--grey-bg);border-color:#c2c6cd;}
+  .oauth-btn svg,.oauth-btn img{width:19px;height:19px;flex-shrink:0;}
+  .auth-or{display:flex;align-items:center;gap:12px;margin:18px 0;color:var(--muted);font-size:.8rem;}
+  .auth-or::before,.auth-or::after{content:"";flex:1;height:1px;background:var(--border);}
+  .auth-switch{text-align:center;font-size:.9rem;color:var(--muted);margin-top:20px;}
+  .auth-switch button{background:none;border:0;color:var(--blue);font-weight:700;cursor:pointer;font-family:"Plus Jakarta Sans",sans-serif;font-size:.9rem;padding:0;}
+  .auth-legal{text-align:center;font-size:.74rem;color:var(--muted);margin-top:16px;line-height:1.5;}
+  .check-row{display:flex;align-items:flex-start;gap:.55rem;margin-bottom:16px;font-size:.84rem;color:var(--ink-soft);}
+  .check-row input{accent-color:var(--blue);width:17px;height:17px;margin-top:2px;flex-shrink:0;cursor:pointer;}
+
+  /* Account-type chooser */
+  .acct-pick{display:flex;flex-direction:column;gap:12px;margin-bottom:6px;}
+  .acct-card{display:flex;align-items:center;gap:14px;border:1.5px solid var(--border-2);border-radius:var(--radius);
+    padding:18px;cursor:pointer;transition:border-color .15s,background .15s;-webkit-tap-highlight-color:transparent;}
+  .acct-card:hover{border-color:var(--blue);background:var(--blue-50);}
+  .acct-card.sel{border-color:var(--blue);background:var(--blue-50);}
+  .acct-card .ac-ico{width:46px;height:46px;border-radius:12px;background:var(--grey-100);color:var(--ink);display:grid;place-items:center;flex-shrink:0;}
+  .acct-card.sel .ac-ico{background:var(--blue);color:#fff;}
+  .acct-card .ac-ico svg{width:24px;height:24px;}
+  .acct-card h4{font-size:1rem;font-weight:700;}
+  .acct-card p{font-size:.82rem;color:var(--muted);margin-top:2px;}
+  .acct-card .ac-radio{width:20px;height:20px;border-radius:50%;border:2px solid var(--border-2);margin-left:auto;flex-shrink:0;position:relative;transition:border-color .15s;}
+  .acct-card.sel .ac-radio{border-color:var(--blue);}
+  .acct-card.sel .ac-radio::after{content:"";position:absolute;inset:3px;border-radius:50%;background:var(--blue);}
+
+  /* Nav account chip */
+  /* Profile button (always to the right of menu) */
+  .nav-prof{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;
+    background:rgba(255,255,255,.12);border:1.5px solid rgba(255,255,255,.28);cursor:pointer;
+    color:#fff;flex-shrink:0;overflow:hidden;padding:0;transition:background .15s,border-color .15s;
+    -webkit-tap-highlight-color:transparent;}
+  .nav-prof:hover{background:rgba(255,255,255,.22);border-color:rgba(255,255,255,.5);}
+  .nav-prof svg{width:21px;height:21px;}
+  .nav-prof img{width:100%;height:100%;object-fit:cover;border-radius:50%;}
+  .nav-prof .np-initials{font-family:"Plus Jakarta Sans",sans-serif;font-weight:800;font-size:.85rem;color:#fff;}
+
+  /* Auth slider (slide-in like the menu) */
+  .auth-slider{position:fixed;inset:0 0 0 auto;width:min(86vw,330px);background:#fff;z-index:100;
+    transform:translateX(100%);transition:transform .3s var(--ease);
+    padding:24px 22px calc(24px + env(safe-area-inset-bottom));
+    display:flex;flex-direction:column;box-shadow:var(--shadow-lg);border-left:1px solid var(--border);}
+  .auth-slider.show{transform:translateX(0);}
+  .auth-slider .as-close{align-self:flex-end;background:var(--grey-100);border:0;color:var(--ink);
+    width:40px;height:40px;border-radius:10px;font-size:1.4rem;cursor:pointer;margin-bottom:6px;line-height:1;
+    -webkit-tap-highlight-color:transparent;}
+  .auth-slider .as-ico{width:62px;height:62px;border-radius:50%;background:var(--blue-50);color:var(--blue);
+    display:grid;place-items:center;margin:10px auto 16px;}
+  .auth-slider .as-ico svg{width:32px;height:32px;}
+  .auth-slider h3{text-align:center;font-size:1.3rem;font-weight:800;letter-spacing:-.02em;}
+  .auth-slider .as-sub{text-align:center;color:var(--muted);font-size:.9rem;margin:.5rem 0 22px;line-height:1.5;}
+  .auth-slider .btn{margin-bottom:10px;}
+
+  .nav-acct{display:flex;align-items:center;gap:.5rem;background:rgba(255,255,255,.12);border:1.5px solid rgba(255,255,255,.2);
+    border-radius:99px;padding:.3rem .3rem .3rem .85rem;cursor:pointer;color:#fff;font-family:"Plus Jakarta Sans",sans-serif;
+    font-weight:600;font-size:.86rem;transition:background .15s;-webkit-tap-highlight-color:transparent;}
+  .nav-acct:hover{background:rgba(255,255,255,.2);}
+  .nav-acct .na-av{width:28px;height:28px;border-radius:50%;background:#fff;color:var(--blue);display:grid;place-items:center;font-weight:800;font-size:.78rem;}
+
+  /* ===== Profile overlay ===== */
+  .profile-overlay{position:fixed;inset:0;background:var(--grey-bg);z-index:78;display:none;overflow-y:auto;-webkit-overflow-scrolling:touch;}
+  .profile-overlay.open{display:block;animation:catIn .3s var(--ease);}
+  .pf-cover{background:linear-gradient(120deg,#2C58DD 0%,#1E3A8A 100%);height:150px;position:relative;}
+  .pf-head{position:sticky;top:0;background:rgba(255,255,255,.94);-webkit-backdrop-filter:saturate(180%) blur(12px);backdrop-filter:saturate(180%) blur(12px);
+    border-bottom:1px solid var(--border);padding:14px 24px;z-index:3;display:flex;align-items:center;gap:18px;}
+  .pf-wrap{max-width:920px;margin:0 auto;padding:0 24px 100px;}
+  .pf-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow-sm);margin-top:-56px;position:relative;z-index:2;padding:26px 28px;}
+  .pf-id{display:flex;gap:20px;align-items:flex-start;flex-wrap:wrap;}
+  .pf-av{width:96px;height:96px;border-radius:50%;background:var(--blue);color:#fff;display:grid;place-items:center;
+    font-family:"Plus Jakarta Sans",sans-serif;font-weight:800;font-size:2.1rem;border:4px solid #fff;box-shadow:var(--shadow-sm);margin-top:-66px;flex-shrink:0;}
+  .pf-id-main{flex:1;min-width:200px;}
+  .pf-id-main h1{font-size:1.6rem;font-weight:800;letter-spacing:-.02em;}
+  .pf-id-main .pf-title{color:var(--ink-soft);font-weight:600;font-family:"Plus Jakarta Sans",sans-serif;margin-top:3px;}
+  .pf-id-main .pf-loc{color:var(--muted);font-size:.9rem;margin-top:6px;display:flex;align-items:center;gap:.4rem;}
+  .pf-id-main .pf-loc svg{width:15px;height:15px;}
+  .pf-rate{text-align:right;flex-shrink:0;}
+  .pf-rate .r-n{font-family:"Plus Jakarta Sans",sans-serif;font-weight:800;font-size:1.5rem;color:var(--ink);}
+  .pf-rate .r-l{font-size:.76rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;}
+  .pf-verified{display:inline-flex;align-items:center;gap:.3rem;background:var(--blue-50);color:var(--blue);font-size:.74rem;font-weight:700;
+    padding:.22rem .55rem;border-radius:7px;font-family:"Plus Jakarta Sans",sans-serif;margin-top:10px;}
+  .pf-verified svg{width:13px;height:13px;}
+  .pf-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px;}
+  .pf-block{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;}
+  .pf-block h3{font-size:1.05rem;font-weight:700;margin-bottom:12px;}
+  .pf-block p{color:var(--ink-soft);font-size:.92rem;line-height:1.6;}
+  .pf-block .chips{margin-top:0;}
+  .pf-empty{color:var(--muted);font-size:.9rem;font-style:italic;}
+  .pf-actions{display:flex;gap:10px;margin-top:18px;flex-wrap:wrap;}
+  @media(max-width:760px){
+    .pf-grid{grid-template-columns:1fr;}
+    .pf-id-main h1{font-size:1.35rem;}
+    .pf-rate{text-align:left;}
+    .pf-av{width:78px;height:78px;font-size:1.7rem;margin-top:-54px;}
+  }
+
+  /* 2FA OTP */
+  .otp-wrap{display:flex;justify-content:center;gap:10px;margin:6px 0 4px;}
+  .otp-box{width:46px;height:56px;text-align:center;font-family:"Plus Jakarta Sans",sans-serif;
+    font-weight:700;font-size:1.4rem;color:var(--ink);border:1.5px solid var(--border-2);
+    border-radius:var(--radius-sm);background:#fff;transition:border-color .15s,box-shadow .15s;}
+  .otp-box:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px var(--blue-50);}
+  .otp-meta{text-align:center;font-size:.84rem;color:var(--muted);margin:14px 0 18px;}
+  .otp-meta strong{color:var(--ink);}
+  .otp-resend{background:none;border:0;color:var(--blue);font-weight:700;cursor:pointer;font-family:"Plus Jakarta Sans",sans-serif;font-size:.86rem;}
+  .otp-demo{text-align:center;font-size:.74rem;color:var(--muted);margin-top:14px;background:var(--blue-50);
+    border-radius:8px;padding:8px 10px;}
+  .otp-demo b{color:var(--blue);font-family:"Plus Jakarta Sans",sans-serif;letter-spacing:.1em;}
+
+  /* Terms link + viewer */
+  .terms-link{background:none;border:0;color:var(--blue);font-weight:700;cursor:pointer;padding:0;font:inherit;text-decoration:underline;}
+  .terms-doc{font-size:.86rem;line-height:1.6;color:var(--ink-soft);max-height:none;}
+  .terms-doc h4{font-size:.98rem;font-weight:700;color:var(--ink);margin:18px 0 6px;}
+  .terms-doc h4:first-child{margin-top:0;}
+  .terms-doc p{margin-bottom:8px;}
+  .terms-doc ul{margin:0 0 10px;padding-left:20px;}
+  .terms-doc li{margin-bottom:5px;}
+  .terms-doc .upd{color:var(--muted);font-size:.78rem;}
+
+  /* Security badge row */
+  .sec-note{display:flex;align-items:flex-start;gap:.5rem;background:var(--grey-bg);border:1px solid var(--border);
+    border-radius:9px;padding:10px 12px;font-size:.78rem;color:var(--muted);line-height:1.5;margin-top:14px;}
+  .sec-note svg{width:16px;height:16px;color:var(--blue);flex-shrink:0;margin-top:1px;}
+
+  /* Toasts */
+  .toast-wrap{position:fixed;top:88px;right:24px;z-index:120;display:flex;flex-direction:column;gap:10px;}
+  .toast{background:#fff;border:1px solid var(--border);border-left:3px solid var(--blue);border-radius:12px;box-shadow:var(--shadow-lg);padding:14px 16px;display:flex;gap:12px;align-items:flex-start;min-width:280px;max-width:360px;animation:toastIn .35s var(--ease);}
+  .toast.out{animation:toastOut .3s var(--ease) forwards;}
+  @keyframes toastIn{from{opacity:0;transform:translateX(28px)}to{opacity:1;transform:none}}
+  @keyframes toastOut{to{opacity:0;transform:translateX(28px)}}
+  .toast .ti{width:34px;height:34px;border-radius:9px;background:var(--blue-50);color:var(--blue);display:grid;place-items:center;flex-shrink:0;}
+  .toast .ti svg{width:19px;height:19px;}
+  .toast .tt{font-family:"Plus Jakarta Sans",sans-serif;font-weight:700;color:var(--ink);font-size:.92rem;}
+  .toast .td{font-size:.82rem;color:var(--muted);margin-top:2px;}
+  .toast .tx{margin-left:auto;background:transparent;border:0;color:var(--muted);cursor:pointer;font-size:1.1rem;line-height:1;}
+
+  /* Mobile slide-in menu */
+  .mnav{position:fixed;inset:0 0 0 auto;width:min(86vw,330px);background:#fff;z-index:100;transform:translateX(100%);transition:transform .3s var(--ease);padding:24px 22px calc(24px + env(safe-area-inset-bottom));display:flex;flex-direction:column;gap:4px;box-shadow:var(--shadow-lg);border-left:1px solid var(--border);}
+  .mnav.show{transform:translateX(0);}
+  .mnav a{color:var(--ink-soft);font-family:"Plus Jakarta Sans",sans-serif;font-weight:500;padding:1rem .5rem;border-radius:10px;border-bottom:1px solid var(--border);}
+  .mnav a:hover{background:var(--grey-100);color:var(--ink);}
+  .mnav .mclose{align-self:flex-end;background:var(--grey-100);border:0;color:var(--ink);width:40px;height:40px;border-radius:10px;font-size:1.4rem;cursor:pointer;margin-bottom:10px;line-height:1;}
+  .mnav .btn{margin-top:10px;}
+
+  /* Fixed bottom action bar (mobile only) */
+  .mobile-cta{display:none;}
+
+  /* ===== Responsive ===== */
+  @media(max-width:980px){
+    .hero-grid{grid-template-columns:1fr;gap:8px;padding:54px 0 60px;}
+    .hero-vis{margin-top:26px;}
+    .wiz-grid{grid-template-columns:1fr;}
+    .browse-grid{grid-template-columns:1fr;}
+    .filters{position:static;}
+    .safety{grid-template-columns:1fr 1fr;}
+    .foot-grid{grid-template-columns:1fr 1fr;}
+  }
+  @media(max-width:760px){
+    /* ── Layout & nav ── */
+    .wrap{padding:0 18px;}
+    .nav-inner{height:64px;}
+    .nav-links{display:none;}
+    .nav-cta .btn{display:none;}
+    .hamburger{display:block;}
+
+    /* ── Hero: minimal, compact ── */
+    .hero .eyebrow{display:none;}
+    .hero-grid{padding:26px 0 30px;text-align:center;}
+    .hero h1{font-size:clamp(2.05rem,8.5vw,2.7rem);margin-top:.5rem;text-align:center;}
+    .hero .lead{font-size:.82rem;max-width:none;margin:1rem auto 0;}
+    .lead-br{display:inline;}
+    .hero-cta{flex-direction:column;align-items:center;gap:.5rem;margin-top:1.6rem;}
+    .hero-cta .btn{flex:none;width:auto;min-width:0;padding:.6rem 1.4rem;font-size:.92rem;}
+    /* stats on ONE line */
+    .hero-stats{
+      display:flex;flex-wrap:nowrap;justify-content:center;
+      gap:1.05rem;max-width:none;margin:1.5rem auto 0;
+    }
+    .hero-stats>div{text-align:center;}
+    .hs-n{font-size:1.02rem;}
+    .hs-l{font-size:.56rem;letter-spacing:.01em;white-space:nowrap;}
+    .hero-vis{max-width:210px;margin:22px auto 0;}
+    .vcard.front{display:none;}
+
+    /* ── Sections ── */
+    section{padding:52px 0;}
+    .flow-sec{padding:40px 0;}
+    .sec-head{margin-bottom:26px;}
+
+    /* Flow on ONE line, smaller */
+    .flow{grid-template-columns:1fr auto 1fr auto 1fr;gap:3px;align-items:start;}
+    .flow-step{padding:2px 2px;}
+    .flow-step .fi{width:42px;height:42px;border-radius:13px;margin-bottom:8px;}
+    .flow-step .fi svg{width:21px;height:21px;}
+    .flow-step h4{font-size:.76rem;}
+    .flow-step p{font-size:.6rem;margin-top:.2rem;line-height:1.2;}
+    .flow-arrow{transform:none;padding-top:12px;}
+    .flow-arrow svg{width:16px;height:16px;}
+
+    /* Categories: 2 columns, icon above text */
+    .cat-grid{grid-template-columns:1fr 1fr;gap:11px;}
+    .cat-card{padding:16px 13px;text-align:center;}
+    .cat-icon{width:42px;height:42px;margin:0 auto 11px;}
+    .cat-icon svg{width:22px;height:22px;}
+    .cat-card h3{font-size:.92rem;line-height:1.2;}
+    .cat-card .cat-meta{margin-top:11px;padding-top:10px;font-size:.72rem;flex-direction:column;gap:5px;}
+
+    /* Smart Match: hide interactive panel, show launcher button + keep figure */
+    .wizard{border-radius:16px;}
+    .wiz-grid{grid-template-columns:1fr;}
+    .wiz-left{padding:30px 24px 26px;}
+    #match .wiz-right{display:none;}                /* hidden in-section only */
+    .wiz-open-btn{
+      display:flex;align-items:center;justify-content:center;gap:.45rem;
+      width:fit-content;margin:22px auto 0;
+      padding:.6rem 1.25rem;cursor:pointer;
+      font-family:"Plus Jakarta Sans",sans-serif;font-weight:600;font-size:.88rem;
+      background:transparent;color:rgba(255,255,255,.88);
+      border:1.5px solid rgba(255,255,255,.32);border-radius:99px;
+      transition:background .15s,border-color .15s;
+      -webkit-tap-highlight-color:transparent;
+    }
+    .wiz-open-btn:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.58);}
+    .wiz-phone-fig{width:96px;}
+
+    /* Wizard category options (inside Smart Match page): 2 cols, icon above text */
+    .opt-grid{grid-template-columns:1fr 1fr;gap:9px;width:100%;}
+    .opt{flex-direction:column;align-items:center;text-align:center;gap:.5rem;padding:.85rem .6rem;font-size:.82rem;line-height:1.2;width:100%;box-sizing:border-box;}
+    .opt .oi{width:34px;height:34px;}
+    .opt .oi svg{width:19px;height:19px;}
+    /* Budget/length seg: fill container on mobile */
+    .seg{width:100%;display:flex;}
+    .seg button{flex:1;text-align:center;}
+
+    /* Featured talent: compact cards */
+    .feat-grid{grid-template-columns:1fr;gap:11px;}
+    .sec-head-row{margin-bottom:20px;}
+    .sec-head-row>button{display:none;}             /* keep just the big CTA below */
+    .tcard{padding:15px;}
+    .feat-grid .tcard .blurb{display:none;}         /* hide description */
+    .feat-grid .tcard .chips{display:none;}         /* hide skill chips */
+    .feat-grid .tcard .thead{align-items:center;}
+    .feat-grid .tcard .tfoot{margin-top:13px;padding-top:11px;}
+    .feat-grid .tcard .uni{font-size:.74rem;}
+    .feat-cta{margin-top:22px;}
+
+    /* Trust: icon left, label right, hide description */
+    .safety{grid-template-columns:1fr;gap:9px;}
+    .safe-item{display:flex;align-items:center;gap:13px;padding:14px 16px;}
+    .safe-item .si{margin-bottom:0;width:40px;height:40px;flex-shrink:0;}
+    .safe-item .si svg{width:20px;height:20px;}
+    .safe-item h4{font-size:.95rem;}
+    .safe-item p{display:none;}
+
+    /* Footer: 2 columns, hide iSpani description column text */
+    .foot-grid{grid-template-columns:1fr 1fr;gap:22px 18px;}
+    .foot-about{display:none;}
+    footer .foot-grid>div:first-child{grid-column:1 / -1;margin-bottom:2px;}
+
+    .cta-band{padding:40px 24px;border-radius:16px;}
+    .modal{border-radius:16px 16px 0 0;align-self:flex-end;max-height:92vh;}
+    .overlay{padding:0;align-items:flex-end;}
+    .modal-foot{flex-direction:column;}
+    .toast-wrap{top:auto;bottom:84px;right:12px;left:12px;}
+    .toast{min-width:0;max-width:none;}
+
+    /* ── Fixed bottom bar ── */
+    .mobile-cta{display:flex;position:fixed;bottom:0;left:0;right:0;z-index:80;gap:10px;
+      padding:10px 14px calc(10px + env(safe-area-inset-bottom));
+      background:rgba(255,255,255,.94);
+      -webkit-backdrop-filter:saturate(180%) blur(12px);backdrop-filter:saturate(180%) blur(12px);
+      border-top:1px solid var(--border);box-shadow:0 -6px 22px rgba(22,24,29,.10);}
+    .mobile-cta .btn{flex:1;}
+    body{padding-bottom:74px;}
+  }
+  @media(max-width:380px){
+    .hero h1{font-size:1.9rem;}
+    .hero-vis{max-width:170px;}
+    .hero-stats{gap:.7rem;}
+    .hs-n{font-size:.92rem;}
+    .hs-l{font-size:.52rem;}
+    .cat-card h3{font-size:.86rem;}
+  }
+  @media(prefers-reduced-motion:reduce){
+    *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important;}
+    .hero-blob{animation:none!important;}
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="nav" id="siteNav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="#top" aria-label="iSpani home"><span class="dot"><span class="dot-bg"></span><span class="dot-txt">iS</span></span><span class="brand-name">iSpani</span></a>
+    <nav class="nav-links" aria-label="Primary">
+      <a class="link" href="#categories">Browse skills</a>
+      <a class="link" href="#match">Smart match</a>
+      <a class="link" href="#" onclick="openCatalog();return false;">Find talent</a>
+      <a class="link" href="#how">How it works</a>
+    </nav>
+    <div class="nav-cta">
+      <button class="btn btn-outline btn-sm" data-auth-guest onclick="openLogin()">Log in</button>
+      <button class="btn btn-primary btn-sm" data-auth-guest onclick="openSignup()">Join free</button>
+      <button class="hamburger" aria-label="Open menu" onclick="toggleMnav(true)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+      <button class="nav-prof" id="navProf" aria-label="Profile" onclick="profileBtn()"></button>
+    </div>
+  </div>
+</header>
+
+<div class="mnav" id="mnav">
+  <button class="mclose" aria-label="Close menu" onclick="toggleMnav(false)">×</button>
+  <a href="#categories" onclick="toggleMnav(false)">Browse skills</a>
+  <a href="#match" onclick="toggleMnav(false)">Smart match</a>
+  <a href="#" onclick="toggleMnav(false);openCatalog();return false;">Find talent</a>
+  <a href="#how" onclick="toggleMnav(false)">How it works</a>
+  <a href="#" data-auth-user style="display:none" onclick="toggleMnav(false);openProfilePage();return false;">My profile</a>
+  <button class="btn btn-outline btn-block" data-auth-guest onclick="toggleMnav(false);openLogin()">Log in</button>
+  <button class="btn btn-primary btn-block" data-auth-guest onclick="toggleMnav(false);openSignup()">Join free</button>
+  <button class="btn btn-outline btn-block" data-auth-user style="display:none" onclick="toggleMnav(false);signOut()">Sign out</button>
+</div>
+
+<!-- AUTH SLIDER (for profile button when logged out) -->
+<div class="auth-slider" id="authSlider">
+  <button class="as-close" aria-label="Close" onclick="toggleAuthSlider(false)">×</button>
+  <div class="as-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a7 7 0 0114 0v1"/></svg></div>
+  <h3>Welcome to iSpani</h3>
+  <p class="as-sub">Log in or create an account to build your profile, get matched, and hire talent.</p>
+  <button class="btn btn-primary btn-block btn-lg" onclick="toggleAuthSlider(false);openLogin()">Log in</button>
+  <button class="btn btn-outline btn-block btn-lg" onclick="toggleAuthSlider(false);openSignup()">Sign up</button>
+</div>
+
+<span id="top"></span>
+<!-- HERO -->
+<section class="hero">
+  <!-- Animated gradient blobs (GPU-composited, transform-only) -->
+  <div class="hero-blob hero-blob-1" aria-hidden="true"></div>
+  <div class="hero-blob hero-blob-2" aria-hidden="true"></div>
+  <div class="hero-blob hero-blob-3" aria-hidden="true"></div>
+  <div class="hero-blob hero-blob-4" aria-hidden="true"></div>
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">ICT talent marketplace · South Africa</span>
+      <h1>Hire skilled<br><span class="hl">ICT students.</span></h1>
+      <p class="lead">Verified university talent,<br class="lead-br">matched to your project in minutes.</p>
+      <div class="hero-cta">
+        <button class="btn btn-white btn-lg" onclick="scrollToId('match')">Find talent →</button>
+        <button class="btn btn-light btn-lg" onclick="scrollToId('talent')">Offer my skills</button>
+      </div>
+      <div class="hero-stats">
+        <div><div class="hs-n">6</div><div class="hs-l">ICT fields</div></div>
+        <div><div class="hs-n">4.8★</div><div class="hs-l">Avg rating</div></div>
+        <div><div class="hs-n">10%</div><div class="hs-l">Flat fee</div></div>
+        <div><div class="hs-n">100%</div><div class="hs-l">SA-verified</div></div>
+      </div>
+    </div>
+    <div class="hero-vis" aria-label="Illustration of an ICT student at a laptop with floating skill badges">
+      <!-- Illustration -->
+      <div class="hero-illo">
+        <svg viewBox="0 0 480 240" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient id="bg-glow" cx="50%" cy="50%" r="55%">
+              <stop offset="0%" stop-color="rgba(255,255,255,.07)"/>
+              <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+            </radialGradient>
+            <radialGradient id="screen-glow" cx="50%" cy="30%" r="70%">
+              <stop offset="0%" stop-color="rgba(100,150,255,.18)"/>
+              <stop offset="100%" stop-color="rgba(0,0,30,.0)"/>
+            </radialGradient>
+            <clipPath id="screen-clip">
+              <rect x="122" y="56" width="190" height="112" rx="4"/>
+            </clipPath>
+          </defs>
+
+          <!-- Background ambient glow -->
+          <ellipse cx="240" cy="140" rx="200" ry="100" fill="url(#bg-glow)"/>
+
+          <!-- ── Person ── -->
+          <!-- Head -->
+          <circle cx="348" cy="74" r="26" fill="rgba(255,255,255,.86)"/>
+          <!-- Neck -->
+          <rect x="340" y="96" width="16" height="14" rx="6" fill="rgba(255,255,255,.86)"/>
+          <!-- Shoulders / body (soft silhouette, sits behind desk) -->
+          <path d="M298 230 C298 160 398 160 398 230" fill="rgba(255,255,255,.15)"/>
+          <!-- Arm reaching to keyboard (right side) -->
+          <path d="M298 170 Q268 185 248 196" stroke="rgba(255,255,255,.22)" stroke-width="18" stroke-linecap="round" fill="none"/>
+
+          <!-- ── Desk ── -->
+          <rect x="30" y="196" width="420" height="10" rx="5" fill="rgba(255,255,255,.16)"/>
+
+          <!-- ── Laptop base / keyboard ── -->
+          <rect x="100" y="168" width="240" height="30" rx="7" fill="rgba(255,255,255,.20)"/>
+          <!-- Keyboard rows -->
+          <rect x="118" y="176" width="204" height="3" rx="1.5" fill="rgba(255,255,255,.30)"/>
+          <rect x="118" y="183" width="204" height="3" rx="1.5" fill="rgba(255,255,255,.22)"/>
+          <rect x="118" y="190" width="160" height="3" rx="1.5" fill="rgba(255,255,255,.20)"/>
+          <!-- Trackpad -->
+          <rect x="192" y="190" width="56" height="5" rx="2.5" fill="rgba(255,255,255,.17)"/>
+          <!-- Hinge shadow -->
+          <rect x="100" y="166" width="240" height="3" rx="1.5" fill="rgba(0,0,30,.18)"/>
+
+          <!-- ── Laptop screen (lid) ── -->
+          <rect x="112" y="42" width="216" height="130" rx="10" fill="rgba(255,255,255,.13)" stroke="rgba(255,255,255,.25)" stroke-width="1.5"/>
+          <!-- Dark screen bezel -->
+          <rect x="122" y="56" width="196" height="112" rx="5" fill="rgba(6,12,46,.92)"/>
+          <rect x="122" y="56" width="196" height="112" rx="5" fill="url(#screen-glow)"/>
+
+          <!-- Window chrome -->
+          <rect x="122" y="56" width="196" height="18" rx="5" fill="rgba(255,255,255,.06)"/>
+          <circle cx="135" cy="65" r="4" fill="rgba(255,100,100,.65)"/>
+          <circle cx="148" cy="65" r="4" fill="rgba(255,190,60,.65)"/>
+          <circle cx="161" cy="65" r="4" fill="rgba(80,210,80,.65)"/>
+          <!-- File name -->
+          <rect x="195" y="61" width="70" height="8" rx="4" fill="rgba(255,255,255,.08)"/>
+
+          <!-- Code lines (inside clipped area) -->
+          <g clip-path="url(#screen-clip)">
+            <!-- Line 1 -->
+            <rect x="132" y="84" width="52" height="5" rx="2.5" fill="rgba(130,185,255,.95)"/>
+            <rect x="190" y="84" width="28" height="5" rx="2.5" fill="rgba(255,255,255,.55)"/>
+            <!-- Line 2 indent -->
+            <rect x="144" y="94" width="38" height="5" rx="2.5" fill="rgba(140,255,190,.80)"/>
+            <rect x="188" y="94" width="60" height="5" rx="2.5" fill="rgba(255,200,110,.70)"/>
+            <!-- Line 3 indent -->
+            <rect x="144" y="104" width="80" height="5" rx="2.5" fill="rgba(255,255,255,.60)"/>
+            <!-- Line 4 indent -->
+            <rect x="144" y="114" width="52" height="5" rx="2.5" fill="rgba(130,185,255,.85)"/>
+            <rect x="202" y="114" width="36" height="5" rx="2.5" fill="rgba(255,255,255,.45)"/>
+            <!-- Line 5 -->
+            <rect x="132" y="124" width="70" height="5" rx="2.5" fill="rgba(255,255,255,.45)"/>
+            <!-- Line 6 indent -->
+            <rect x="144" y="134" width="90" height="5" rx="2.5" fill="rgba(140,255,190,.65)"/>
+            <!-- Line 7 -->
+            <rect x="132" y="144" width="44" height="5" rx="2.5" fill="rgba(130,185,255,.90)"/>
+            <!-- Cursor -->
+            <rect x="180" y="144" width="2.5" height="14" rx="1.2" fill="rgba(255,255,255,.92)">
+              <animate attributeName="opacity" values="1;0;1" dur="1.1s" repeatCount="indefinite"/>
+            </rect>
+          </g>
+
+          <!-- ── Floating skill badges ── -->
+          <!-- React (top-left) -->
+          <rect x="10" y="58" width="68" height="26" rx="13" fill="rgba(255,255,255,.13)" stroke="rgba(255,255,255,.28)" stroke-width="1.2"/>
+          <text x="44" y="75.5" text-anchor="middle" font-family="Plus Jakarta Sans,Inter,sans-serif" font-size="10.5" font-weight="700" fill="rgba(255,255,255,.90)">React</text>
+          <!-- connector dots -->
+          <circle cx="80" cy="71" r="2.2" fill="rgba(255,255,255,.32)"/>
+          <circle cx="88" cy="71" r="2.2" fill="rgba(255,255,255,.22)"/>
+          <circle cx="97" cy="71" r="2.2" fill="rgba(255,255,255,.14)"/>
+
+          <!-- Python (top-right) -->
+          <rect x="402" y="50" width="68" height="26" rx="13" fill="rgba(255,255,255,.13)" stroke="rgba(255,255,255,.28)" stroke-width="1.2"/>
+          <text x="436" y="67.5" text-anchor="middle" font-family="Plus Jakarta Sans,Inter,sans-serif" font-size="10.5" font-weight="700" fill="rgba(255,255,255,.90)">Python</text>
+          <!-- connector dots -->
+          <circle cx="398" cy="63" r="2.2" fill="rgba(255,255,255,.32)"/>
+          <circle cx="390" cy="63" r="2.2" fill="rgba(255,255,255,.22)"/>
+          <circle cx="382" cy="63" r="2.2" fill="rgba(255,255,255,.14)"/>
+
+          <!-- Node.js (left-mid) -->
+          <rect x="6" y="110" width="76" height="26" rx="13" fill="rgba(255,255,255,.13)" stroke="rgba(255,255,255,.28)" stroke-width="1.2"/>
+          <text x="44" y="127.5" text-anchor="middle" font-family="Plus Jakarta Sans,Inter,sans-serif" font-size="10.5" font-weight="700" fill="rgba(255,255,255,.90)">Node.js</text>
+          <circle cx="84" cy="123" r="2.2" fill="rgba(255,255,255,.32)"/>
+          <circle cx="92" cy="121" r="2.2" fill="rgba(255,255,255,.20)"/>
+
+          <!-- SQL (right-mid) -->
+          <rect x="408" y="104" width="62" height="26" rx="13" fill="rgba(255,255,255,.13)" stroke="rgba(255,255,255,.28)" stroke-width="1.2"/>
+          <text x="439" y="121.5" text-anchor="middle" font-family="Plus Jakarta Sans,Inter,sans-serif" font-size="10.5" font-weight="700" fill="rgba(255,255,255,.90)">SQL</text>
+          <circle cx="404" cy="117" r="2.2" fill="rgba(255,255,255,.32)"/>
+          <circle cx="396" cy="117" r="2.2" fill="rgba(255,255,255,.20)"/>
+
+          <!-- Azure (bottom-left) -->
+          <rect x="14" y="160" width="66" height="26" rx="13" fill="rgba(255,255,255,.10)" stroke="rgba(255,255,255,.22)" stroke-width="1.2"/>
+          <text x="47" y="177.5" text-anchor="middle" font-family="Plus Jakarta Sans,Inter,sans-serif" font-size="10.5" font-weight="600" fill="rgba(255,255,255,.76)">Azure</text>
+
+          <!-- Figma (bottom-right) -->
+          <rect x="400" y="156" width="68" height="26" rx="13" fill="rgba(255,255,255,.10)" stroke="rgba(255,255,255,.22)" stroke-width="1.2"/>
+          <text x="434" y="173.5" text-anchor="middle" font-family="Plus Jakarta Sans,Inter,sans-serif" font-size="10.5" font-weight="600" fill="rgba(255,255,255,.76)">Figma</text>
+
+          <!-- Small sparkle accents -->
+          <circle cx="58" cy="34" r="3" fill="rgba(255,255,255,.22)"/>
+          <circle cx="420" cy="170" r="2.5" fill="rgba(255,255,255,.18)"/>
+          <circle cx="20" cy="200" r="2" fill="rgba(255,255,255,.16)"/>
+          <circle cx="460" cy="30" r="2" fill="rgba(255,255,255,.18)"/>
+        </svg>
+      </div>
+
+      <!-- Talent card (sits flush below the illustration) -->
+      <div class="vcard front">
+        <div class="row">
+          <div class="avatar">LM</div>
+          <div><div class="name">Lerato Mokoena</div><div class="sub">Final-year BSc CS · Wits</div></div>
+          <div class="ring"><svg width="54" height="54"><circle class="track" cx="27" cy="27" r="22" stroke-width="6" fill="none"/><circle class="prog" cx="27" cy="27" r="22" stroke-width="6" fill="none" stroke-linecap="round" stroke-dasharray="138" stroke-dashoffset="6"/></svg><span class="val">96%</span></div>
+        </div>
+        <div class="chips"><span class="chip match">React</span><span class="chip match">Node.js</span><span class="chip">PostgreSQL</span></div>
+        <div class="barline"><i></i></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VISUAL FLOW -->
+<section id="how" class="flow-sec">
+  <div class="wrap">
+    <div class="flow">
+      <div class="flow-step">
+        <div class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h4"/></svg></div>
+        <h4>Post a job</h4><p>Tell us what you need</p>
+      </div>
+      <div class="flow-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" style="overflow:visible"><path class="farr" pathLength="1" d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+      <div class="flow-step">
+        <div class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 3l2.2 5.6L20 10l-5.8 1.4L12 17l-2.2-5.6L4 10l5.8-1.4z"/></svg></div>
+        <h4>Get matched</h4><p>Ranked talent, instantly</p>
+      </div>
+      <div class="flow-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" style="overflow:visible"><path class="farr" pathLength="1" d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+      <div class="flow-step">
+        <div class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6z"/><path d="M9 12l2 2 4-4"/></svg></div>
+        <h4>Hire safely</h4><p>Escrow-protected pay</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CATEGORIES -->
+<section id="categories" class="bg-grey">
+  <div class="wrap">
+    <div class="sec-head"><span class="eyebrow">Explore by skill</span><h2>Browse by ICT field</h2></div>
+    <div class="cat-grid" id="catGrid"></div>
+  </div>
+</section>
+
+<!-- SMART MATCH -->
+<section id="match" class="match-dark">
+  <div class="wrap">
+    <div class="wizard">
+      <div class="wiz-grid">
+        <div class="wiz-left">
+          <h2>Smart Match</h2>
+          <div class="wiz-inner">
+
+            <!-- Visual step list (icon + label, no paragraphs) -->
+            <div id="wizSteps" class="wvs">
+              <div class="wstep" data-s="1">
+                <div class="wvs-row">
+                  <div class="wvs-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></div>
+                  <div class="wvs-txt"><strong>Category</strong><em>Pick your field</em></div>
+                </div>
+                <div class="wvs-line"></div>
+              </div>
+              <div class="wstep" data-s="2">
+                <div class="wvs-row">
+                  <div class="wvs-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2 6.5H21l-5.6 4.1 2.1 6.5L12 15l-5.5 4.1 2.1-6.5L3 8.5h7z"/></svg></div>
+                  <div class="wvs-txt"><strong>Skills</strong><em>Must-haves</em></div>
+                </div>
+                <div class="wvs-line"></div>
+              </div>
+              <div class="wstep" data-s="3">
+                <div class="wvs-row">
+                  <div class="wvs-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div>
+                  <div class="wvs-txt"><strong>Budget</strong><em>Rate &amp; timeline</em></div>
+                </div>
+                <div class="wvs-line"></div>
+              </div>
+              <div class="wstep" data-s="4">
+                <div class="wvs-row">
+                  <div class="wvs-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div>
+                  <div class="wvs-txt"><strong>Matches</strong><em>Ranked for you</em></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Animated phone figure -->
+            <div class="wiz-phone-fig" aria-hidden="true">
+              <svg viewBox="0 0 108 210" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <clipPath id="phone-screen-clip"><rect x="35" y="68" width="38" height="74" rx="5"/></clipPath>
+                </defs>
+
+                <!-- Whole figure bobs gently -->
+                <g class="pfig">
+
+                  <!-- Legs -->
+                  <rect x="40" y="118" width="12" height="48" rx="6" fill="#8fa9f3" opacity=".55"/>
+                  <rect x="56" y="118" width="12" height="48" rx="6" fill="#8fa9f3" opacity=".55"/>
+                  <!-- Feet -->
+                  <ellipse cx="46" cy="168" rx="12" ry="6" fill="#6988dc" opacity=".45"/>
+                  <ellipse cx="62" cy="168" rx="12" ry="6" fill="#6988dc" opacity=".45"/>
+
+                  <!-- Torso (visible at sides of phone) -->
+                  <rect x="22" y="64" width="17" height="54" rx="9" fill="#8fa9f3" opacity=".6"/>
+                  <rect x="69" y="64" width="17" height="54" rx="9" fill="#8fa9f3" opacity=".6"/>
+
+                  <!-- Arms curving down to hold phone -->
+                  <path d="M24,76 C16,88 16,108 24,118" stroke="#8fa9f3" stroke-width="11" stroke-linecap="round" fill="none" opacity=".6"/>
+                  <path d="M84,76 C92,88 92,108 84,118" stroke="#8fa9f3" stroke-width="11" stroke-linecap="round" fill="none" opacity=".6"/>
+                  <!-- Hands -->
+                  <circle cx="24" cy="120" r="7.5" fill="#8fa9f3" opacity=".6"/>
+                  <circle cx="84" cy="120" r="7.5" fill="#8fa9f3" opacity=".6"/>
+
+                  <!-- Head -->
+                  <circle cx="54" cy="42" r="19" fill="#c5d5ee"/>
+                  <!-- Face: eyes -->
+                  <circle cx="47" cy="40" r="2.8" fill="rgba(45,91,224,.5)"/>
+                  <circle cx="61" cy="40" r="2.8" fill="rgba(45,91,224,.5)"/>
+                  <!-- Smile -->
+                  <path d="M47 49 Q54 54 61 49" stroke="rgba(45,91,224,.45)" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+                  <!-- Hair -->
+                  <path d="M36,38 Q35,22 54,20 Q73,22 72,38" fill="#8fa9f3" opacity=".55"/>
+
+                  <!-- Phone device (front, overlaps body) -->
+                  <rect x="28" y="60" width="52" height="90" rx="11" fill="#2D5BE0"/>
+                  <!-- Screen -->
+                  <rect x="35" y="68" width="38" height="74" rx="5" fill="#edf2fe"/>
+                  <!-- Notch -->
+                  <rect x="46" y="68" width="16" height="5.5" rx="2.8" fill="rgba(45,91,224,.35)"/>
+
+                  <!-- Screen UI (clipped) -->
+                  <g clip-path="url(#phone-screen-clip)">
+                    <!-- Search bar -->
+                    <rect x="38" y="77" width="32" height="8" rx="4" fill="rgba(45,91,224,.18)"/>
+                    <circle cx="43" cy="81" r="2.5" fill="rgba(45,91,224,.4)"/>
+                    <rect x="48" y="79.5" width="18" height="3" rx="1.5" fill="rgba(45,91,224,.3)"/>
+                    <!-- Card 1 (active / highlighted) -->
+                    <rect x="38" y="89" width="32" height="20" rx="4" fill="rgba(45,91,224,.12)"/>
+                    <rect class="pscreen-active" x="38" y="89" width="32" height="20" rx="4" fill="rgba(45,91,224,.22)"/>
+                    <circle cx="45" cy="99" r="6" fill="rgba(45,91,224,.38)"/>
+                    <rect x="53" y="94.5" width="14" height="3.5" rx="1.8" fill="rgba(45,91,224,.5)"/>
+                    <rect x="53" y="100" width="10" height="2.8" rx="1.4" fill="rgba(45,91,224,.3)"/>
+                    <!-- Match score badge on card 1 -->
+                    <rect x="61" y="90" width="9" height="9" rx="4.5" fill="#2D5BE0"/>
+                    <text x="65.5" y="97.5" text-anchor="middle" font-family="Plus Jakarta Sans,sans-serif" font-size="5.5" font-weight="800" fill="#fff">96</text>
+                    <!-- Card 2 -->
+                    <rect x="38" y="113" width="32" height="20" rx="4" fill="rgba(45,91,224,.09)"/>
+                    <circle cx="45" cy="123" r="6" fill="rgba(45,91,224,.22)"/>
+                    <rect x="53" y="118.5" width="12" height="3.5" rx="1.8" fill="rgba(45,91,224,.3)"/>
+                    <rect x="53" y="124" width="8" height="2.8" rx="1.4" fill="rgba(45,91,224,.2)"/>
+                    <!-- Home bar -->
+                    <rect x="43" y="136" width="22" height="3" rx="1.5" fill="rgba(45,91,224,.3)"/>
+                  </g>
+
+                  <!-- Status dot on phone -->
+                  <circle class="pdot" cx="85" cy="66" r="5" fill="#2D5BE0" stroke="#fff" stroke-width="2"/>
+
+                  <!-- Notification A: floats up from phone top -->
+                  <g class="pnotif-a">
+                    <rect x="55" y="44" width="40" height="16" rx="8" fill="#fff" opacity=".95"/>
+                    <text x="75" y="55.5" text-anchor="middle" font-family="Plus Jakarta Sans,sans-serif" font-size="7" font-weight="700" fill="#2D5BE0">✦ Match!</text>
+                  </g>
+
+                  <!-- Notification B: offset timing, other side -->
+                  <g class="pnotif-b">
+                    <rect x="12" y="50" width="34" height="16" rx="8" fill="#fff" opacity=".9"/>
+                    <text x="29" y="61.5" text-anchor="middle" font-family="Plus Jakarta Sans,sans-serif" font-size="7" font-weight="700" fill="#2D5BE0">96% fit</text>
+                  </g>
+
+                </g><!-- end .pfig -->
+              </svg>
+            </div>
+
+          </div><!-- end .wiz-inner -->
+          <button class="wiz-open-btn" onclick="openWizPage()">Start Smart Match →</button>
+        </div>
+        <div class="wiz-right" id="wizRight">
+          <div class="wiz-panel show" data-panel="1">
+            <h4>What kind of work do you need?</h4>
+            <p class="hint">Choose the category that fits best.</p>
+            <div class="opt-grid" id="wizCats"></div>
+            <div class="wiz-nav"><span class="step-tag">Step 1 of 3</span><button class="btn btn-primary btn-sm" id="next1" disabled onclick="wizGo(2)">Continue →</button></div>
+          </div>
+          <div class="wiz-panel" data-panel="2">
+            <h4>Which skills are must-haves?</h4>
+            <p class="hint">Pick a few — matches rank on how many they have.</p>
+            <div class="skill-pick" id="wizSkills"></div>
+            <div class="wiz-nav"><button class="btn btn-ghost btn-sm" onclick="wizGo(1)">← Back</button><button class="btn btn-primary btn-sm" id="next2" disabled onclick="wizGo(3)">Continue →</button></div>
+          </div>
+          <div class="wiz-panel" data-panel="3">
+            <h4>Budget and project length</h4>
+            <p class="hint">We'll favour talent whose rate fits your budget.</p>
+            <span class="field-label">Maximum hourly rate</span>
+            <div class="budget-row" id="wizBudget">
+              <div class="seg">
+                <button data-b="200" onclick="pickBudget(this,200)">≤ R200</button>
+                <button data-b="300" class="sel" onclick="pickBudget(this,300)">≤ R300</button>
+                <button data-b="400" onclick="pickBudget(this,400)">≤ R400</button>
+                <button data-b="9999" onclick="pickBudget(this,9999)">Any</button>
+              </div>
+            </div>
+            <span class="field-label">Project length</span>
+            <div class="seg" id="wizLen"><button data-l="short" class="sel" onclick="pickLen(this,'short')">Short / once-off</button><button data-l="long" onclick="pickLen(this,'long')">Ongoing</button></div>
+            <div class="wiz-nav"><button class="btn btn-ghost btn-sm" onclick="wizGo(2)">← Back</button><button class="btn btn-primary btn-sm" onclick="runMatch()">Find my matches →</button></div>
+          </div>
+          <div class="wiz-panel" data-panel="4" id="wizResults"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TALENT (landing: 3 featured only) -->
+<section id="talent" class="bg-grey" style="padding-top:0;">
+  <div class="wrap">
+    <div class="sec-head-row">
+      <div><span class="eyebrow">Featured talent</span><h2 style="margin-top:.6rem">Meet a few of our talent</h2></div>
+      <button class="btn btn-outline" onclick="openCatalog()">View all profiles →</button>
+    </div>
+    <div class="feat-grid" id="featGrid"></div>
+    <div class="feat-cta">
+      <button class="btn btn-primary btn-lg" onclick="openCatalog()">Browse all verified talent →</button>
+      <p style="color:var(--muted);font-size:.88rem;margin-top:12px;">12 verified SA students &amp; graduates across 6 ICT fields</p>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST -->
+<section id="trust" class="bg-grey" style="padding-top:0;">
+  <div class="wrap">
+    <div class="sec-head"><span class="eyebrow">Built-in protection</span><h2>Safe for both sides</h2></div>
+    <div class="safety">
+      <div class="safe-item"><div class="si"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6z"/><path d="M9 12l2 2 4-4"/></svg></div><h4>Escrow protection</h4><p>Funds held until work is approved.</p></div>
+      <div class="safe-item"><div class="si"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.5V8a2 2 0 00-2-2h-7l-2-3H4a2 2 0 00-2 2v12a2 2 0 002 2h7"/><circle cx="18" cy="18" r="3"/><path d="M18 16.5v1.5l1 1"/></svg></div><h4>Verified credentials</h4><p>Enrolment and transcripts checked.</p></div>
+      <div class="safe-item"><div class="si"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div><h4>Ratings &amp; reviews</h4><p>Transparent two-way feedback.</p></div>
+      <div class="safe-item"><div class="si"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><path d="M12 3l7 4v5c0 4-3 7-7 9-4-2-7-5-7-9V7z"/></svg></div><h4>Dispute resolution</h4><p>Mediation with secure evidence.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section style="padding-top:0;">
+  <div class="wrap">
+    <div class="cta-band">
+      <h2>Skilled students, ready to hire.</h2>
+      <p>Affordable, verified ICT talent — matched in minutes, paid through escrow.</p>
+      <div class="hero-cta"><button class="btn btn-primary btn-lg" onclick="openJob()">Post a job — it's free</button><button class="btn btn-light btn-lg" onclick="openCatalog()">Browse talent</button></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div><span class="brand"><span class="dot">iS</span><span>iSpani<small>ICT talent · ZA</small></span></span><p class="foot-about">Where verified ICT students and graduates meet the South African businesses that need them.</p></div>
+      <div><h5>Marketplace</h5><ul><li><a href="#categories">Browse skills</a></li><li><a href="#" onclick="openCatalog();return false;">Find talent</a></li><li><a href="#match">Smart Match</a></li><li><a href="#" onclick="openJob();return false;">Post a job</a></li></ul></div>
+      <div><h5>For students</h5><ul><li><a href="#how">How it works</a></li><li><a href="#" onclick="toast('Coming soon','Mentorship is on the roadmap.');return false;">Mentorship</a></li><li><a href="#" onclick="toast('Coming soon','Learning hub is on the roadmap.');return false;">Learning hub</a></li><li><a href="#" onclick="toast('Coming soon','Get paid via bank, PayPal or Wise.');return false;">Get paid</a></li></ul></div>
+      <div><h5>Company</h5><ul><li><a href="#">iSpani (Pty) Ltd</a></li><li><a href="#">About</a></li><li><a href="#">Trust &amp; safety</a></li><li><a href="#">Contact</a></li></ul></div>
+    </div>
+    <div class="foot-bottom"><span>© 2026 iSpani (Pty) Ltd · South Africa · Founder &amp; CEO, Taddy Mndawe</span><span class="meta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6z"/></svg>POPIA-aligned · prototype</span></div>
+  </div>
+</footer>
+
+<!-- Fixed bottom action bar (mobile) -->
+<div class="mobile-cta">
+  <button class="btn btn-primary btn-lg" onclick="openJob()">Post a job</button>
+  <button class="btn btn-outline btn-lg" onclick="openCatalog()">Find talent</button>
+</div>
+
+<!-- USER PROFILE OVERLAY -->
+<div class="profile-overlay" id="profileOverlay" role="dialog" aria-label="Your profile">
+  <div class="pf-head">
+    <button class="back-btn" onclick="closeProfilePage()" aria-label="Back to home">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      Back
+    </button>
+    <div class="ch-txt"><div class="eyebrow">Your profile</div><h3>Profile</h3></div>
+  </div>
+  <div class="pf-cover"></div>
+  <div class="pf-wrap" id="profileMount"></div>
+</div>
+
+<!-- SMART MATCH PAGE OVERLAY (mobile) -->
+<div class="wizpage-overlay" id="wizPageOverlay" role="dialog" aria-label="Smart Match" onclick="if(event.target===this)closeWizPage()">
+  <div class="wizpage-sheet">
+    <div class="wizpage-head">
+      <h3>Smart Match</h3>
+      <button class="close-x" onclick="closeWizPage()" aria-label="Close">×</button>
+    </div>
+    <div class="wizpage-mount" id="wizPageMount"></div>
+  </div>
+</div>
+
+<!-- TALENT CATALOG OVERLAY -->
+<div class="catalog-overlay" id="catalogOverlay" role="dialog" aria-label="Talent catalog">
+  <div class="catalog-head">
+    <button class="back-btn" onclick="closeCatalog()" aria-label="Back to home">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      Back
+    </button>
+    <div class="ch-txt">
+      <div class="eyebrow">Talent catalog</div>
+      <h3>All verified ICT talent</h3>
+    </div>
+  </div>
+  <div class="catalog-body">
+    <div class="wrap">
+      <div class="browse-grid">
+        <aside class="filters" aria-label="Filters">
+          <div class="search-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg><input type="text" id="searchInput" placeholder="Search name or skill…" oninput="renderTalent()" aria-label="Search talent"></div>
+          <div class="fgroup"><span class="flabel">Field</span><div id="filterCats"></div></div>
+          <div class="fgroup"><span class="flabel">Max rate — <span class="range-val" id="rateLabel">R400/hr</span></span><input type="range" id="rateRange" min="100" max="400" step="50" value="400" oninput="renderTalent()"></div>
+          <div class="fgroup"><span class="flabel">Status</span><label class="check"><input type="checkbox" id="fStudent" checked onchange="renderTalent()"> Current students</label><label class="check"><input type="checkbox" id="fGrad" checked onchange="renderTalent()"> Graduates</label></div>
+          <button class="btn btn-ghost btn-sm btn-block" style="margin-top:14px;" onclick="resetFilters()">Reset filters</button>
+        </aside>
+        <div>
+          <div class="browse-top"><span class="count" id="talentCount"></span><select id="sortSel" onchange="renderTalent()" aria-label="Sort talent"><option value="rating">Sort: Top rated</option><option value="low">Sort: Rate (low → high)</option><option value="high">Sort: Rate (high → low)</option></select></div>
+          <div class="talent-grid" id="talentGrid"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="overlay" id="overlay" onclick="if(event.target===this)closeModal()"><div class="modal" id="modal" role="dialog" aria-modal="true"></div></div>
+<div class="toast-wrap" id="toastWrap"></div>
+
+<script>
+const IC = {
+  dev:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 9l-3 3 3 3M16 9l3 3-3 3M13 6l-2 12"/></svg>',
+  data:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v6c0 1.7 3.6 3 8 3s8-1.3 8-3V6M4 12v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></svg>',
+  sec:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6z"/><path d="M9 12l2 2 4-4"/></svg>',
+  cloud:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 10a4 4 0 00-7.7-1.3A3.5 3.5 0 106 16h11a3.5 3.5 0 001-6.9z"/></svg>',
+  support:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg>',
+  design:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="13.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="12" r="2.5"/><circle cx="8.5" cy="7.5" r="2.5"/><circle cx="6.5" cy="13" r="2.5"/><path d="M12 22a2 2 0 002-2c0-1.1-.9-2-2-2s-2-.9-2-2a4 4 0 014-4"/></svg>',
+  port:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16v12H4zM8 7V5a2 2 0 012-2h4a2 2 0 012 2v2"/></svg>',
+  star:'<svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .5-5.5 4.5 2 7L12 17l-6.5 4 2-7L2 9.5 9 9z"/></svg>',
+  check:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 13l4 4 10-10"/></svg>'
+};
+
+const CATEGORIES = [
+  {id:'dev',  name:'Software Development', icon:IC.dev,  skills:['React','Node.js','C#/.NET','Python','Java','Flutter','PostgreSQL','REST APIs']},
+  {id:'data', name:'Data Science & AI',   icon:IC.data, skills:['Python','Pandas','SQL','Machine Learning','Power BI','TensorFlow','Data cleaning']},
+  {id:'sec',  name:'Cybersecurity',       icon:IC.sec,  skills:['Pen-testing','SIEM','Network security','Vulnerability scanning','Linux']},
+  {id:'cloud',name:'Cloud & DevOps',      icon:IC.cloud,skills:['Azure','AWS','Docker','CI/CD','Linux','Kubernetes']},
+  {id:'support',name:'IT Support',        icon:IC.support,skills:['Troubleshooting','Networking','Windows','Hardware','Help desk']},
+  {id:'design',name:'UI/UX & Web Design', icon:IC.design,skills:['Figma','UI design','Tailwind CSS','Prototyping','HTML/CSS','Webflow']}
+];
+const catById = id => CATEGORIES.find(c=>c.id===id);
+
+const STUDENTS = [
+  {id:1,name:'Lerato Mokoena',initials:'LM',grad:'student',uni:'Final-year BSc Computer Science · Wits',cat:'dev',rate:240,rating:4.9,reviews:27,blurb:'Full-stack developer building React + Node apps. Shipped two live web apps for campus societies.',skills:['React','Node.js','PostgreSQL','REST APIs','HTML/CSS'],matrix:[['React',92],['Node.js',88],['PostgreSQL',80],['REST APIs',85]],port:[['Society events platform','React + Node web app'],['Tutor-booking API','Node.js + PostgreSQL']]},
+  {id:2,name:'Thabo Ndlovu',initials:'TN',grad:'grad',uni:'Data Science graduate 2024 · UCT',cat:'data',rate:320,rating:4.8,reviews:19,blurb:'Turns messy spreadsheets into clear dashboards and predictive models. Hackathon finalist twice.',skills:['Python','Pandas','SQL','Machine Learning','Power BI'],matrix:[['Python',94],['Pandas',90],['Machine Learning',78],['SQL',82]],port:[['Retail demand model','Python + scikit-learn'],['Sales dashboard','Power BI']]},
+  {id:3,name:'Aisha Patel',initials:'AP',grad:'student',uni:'BSc IT (3rd yr) · UJ',cat:'sec',rate:280,rating:4.7,reviews:12,blurb:'Security-focused student running vulnerability assessments and basic pen-tests for small sites.',skills:['Pen-testing','Network security','Linux','Vulnerability scanning'],matrix:[['Pen-testing',80],['Network security',85],['Linux',88],['Vulnerability scanning',76]],port:[['NPO website audit','OWASP review'],['Home lab SIEM','Wazuh + ELK']]},
+  {id:4,name:'Sipho Dlamini',initials:'SD',grad:'grad',uni:'BSc IT graduate · UP',cat:'cloud',rate:350,rating:4.9,reviews:22,blurb:'Deploys and automates. Sets up CI/CD and containerised hosting on Azure and AWS for small teams.',skills:['Azure','Docker','CI/CD','AWS','Linux'],matrix:[['Azure',90],['Docker',86],['CI/CD',84],['AWS',79]],port:[['Dockerised SME backend','Docker + GitHub Actions'],['Azure static hosting','Azure App Service']]},
+  {id:5,name:'Naledi Khumalo',initials:'NK',grad:'student',uni:'Final-year BCom Information Systems · Stellenbosch',cat:'design',rate:200,rating:4.8,reviews:31,blurb:'UI/UX designer crafting clean, responsive interfaces in Figma and shipping them with Tailwind.',skills:['Figma','UI design','Tailwind CSS','Prototyping','HTML/CSS'],matrix:[['Figma',93],['UI design',89],['Tailwind CSS',82],['Prototyping',85]],port:[['Clinic booking UI','Figma + prototype'],['Café landing page','Tailwind CSS']]},
+  {id:6,name:'Riaan Botha',initials:'RB',grad:'student',uni:'Diploma in IT (final) · CPUT',cat:'support',rate:160,rating:4.6,reviews:15,blurb:'Reliable IT support — device setup, networking and remote troubleshooting for small offices.',skills:['Troubleshooting','Networking','Windows','Help desk','Hardware'],matrix:[['Troubleshooting',88],['Networking',80],['Windows',86],['Help desk',83]],port:[['5-person office network','Router + NAS setup'],['Remote support desk','TeamViewer workflows']]},
+  {id:7,name:'Zanele Mthembu',initials:'ZM',grad:'grad',uni:'BSc Computer Science graduate · UKZN',cat:'dev',rate:300,rating:5.0,reviews:34,blurb:'Backend specialist in C#/.NET and APIs. Comfortable with databases, auth and clean architecture.',skills:['C#/.NET','REST APIs','PostgreSQL','Java','Node.js'],matrix:[['C#/.NET',95],['REST APIs',88],['PostgreSQL',84],['Java',76]],port:[['Inventory API','.NET + EF Core'],['Auth microservice','JWT + role-based access']]},
+  {id:8,name:'Kabelo Sithole',initials:'KS',grad:'student',uni:'BSc Data Science (3rd yr) · Wits',cat:'data',rate:220,rating:4.7,reviews:11,blurb:'Data analyst comfortable with SQL and Python. Builds reports and automates repetitive data tasks.',skills:['SQL','Python','Power BI','Data cleaning','Pandas'],matrix:[['SQL',86],['Python',82],['Power BI',84],['Data cleaning',88]],port:[['NGO impact report','Power BI'],['CSV cleaning toolkit','Python scripts']]},
+  {id:9,name:'Megan van Wyk',initials:'MV',grad:'grad',uni:'BIS graduate · UP',cat:'design',rate:260,rating:4.9,reviews:24,blurb:'Product designer who ships. Strong on accessibility, design systems and front-end handoff.',skills:['Figma','UI design','Prototyping','HTML/CSS','Webflow'],matrix:[['Figma',91],['UI design',90],['HTML/CSS',80],['Webflow',78]],port:[['SaaS design system','Figma components'],['Portfolio in Webflow','Webflow build']]},
+  {id:10,name:'Tendai Moyo',initials:'TM',grad:'student',uni:'BSc IT (final) · UCT',cat:'cloud',rate:280,rating:4.8,reviews:9,blurb:'Cloud-curious developer setting up AWS hosting, Docker and simple pipelines for student startups.',skills:['AWS','Docker','Linux','CI/CD','Kubernetes'],matrix:[['AWS',84],['Docker',82],['Linux',86],['CI/CD',75]],port:[['Startup MVP hosting','AWS + Docker'],['CI pipeline','GitHub Actions']]},
+  {id:11,name:'Fatima Adams',initials:'FA',grad:'grad',uni:'BSc IT graduate · CPUT',cat:'sec',rate:330,rating:4.9,reviews:17,blurb:'Cybersecurity analyst running audits, SIEM setup and security awareness for small businesses.',skills:['SIEM','Pen-testing','Network security','Vulnerability scanning','Linux'],matrix:[['SIEM',88],['Pen-testing',83],['Network security',86],['Vulnerability scanning',85]],port:[['SME security audit','Full OWASP + report'],['SIEM rollout','Wazuh deployment']]},
+  {id:12,name:'Bongani Nkosi',initials:'BN',grad:'student',uni:'Diploma in IT Support (final) · UJ',cat:'support',rate:150,rating:4.5,reviews:8,blurb:'Hands-on support for hardware, Windows and small networks. Patient, clear and quick to respond.',skills:['Hardware','Troubleshooting','Windows','Networking','Help desk'],matrix:[['Hardware',85],['Troubleshooting',84],['Windows',82],['Networking',78]],port:[['Lab PC rebuild','12-machine refresh'],['Wi-Fi extension','Mesh setup']]}
+];
+
+function renderCats(){
+  document.getElementById('catGrid').innerHTML = CATEGORIES.map(c=>{
+    const count = STUDENTS.filter(s=>s.cat===c.id).length;
+    return `<div class="cat-card" onclick="filterToCat('${c.id}')" role="button" tabindex="0" onkeypress="if(event.key==='Enter')filterToCat('${c.id}')"><div class="cat-icon">${c.icon}</div><h3>${c.name}</h3><div class="cat-meta"><span>${count} available</span><span class="cat-go">Browse →</span></div></div>`;
+  }).join('');
+}
+
+let wiz = {cat:null,skills:[],budget:300,len:'short'};
+function renderWizCats(){document.getElementById('wizCats').innerHTML = CATEGORIES.map(c=>`<div class="opt" data-c="${c.id}" onclick="pickWizCat('${c.id}')"><span class="oi">${c.icon}</span>${c.name}</div>`).join('');}
+function pickWizCat(id){wiz.cat=id;wiz.skills=[];document.querySelectorAll('#wizCats .opt').forEach(o=>o.classList.toggle('sel',o.dataset.c===id));document.getElementById('next1').disabled=false;}
+function renderWizSkills(){const c=catById(wiz.cat);if(!c)return;document.getElementById('wizSkills').innerHTML=c.skills.map(s=>`<button class="spill ${wiz.skills.includes(s)?'sel':''}" onclick="toggleWizSkill('${s.replace(/'/g,"\\'")}')">${s}</button>`).join('');document.getElementById('next2').disabled=wiz.skills.length===0;}
+function toggleWizSkill(s){wiz.skills.includes(s)?wiz.skills=wiz.skills.filter(x=>x!==s):wiz.skills.push(s);renderWizSkills();}
+function pickBudget(el,v){wiz.budget=v;document.querySelectorAll('#wizBudget .seg button').forEach(b=>b.classList.toggle('sel',b===el));}
+function pickLen(el,v){wiz.len=v;document.querySelectorAll('#wizLen button').forEach(b=>b.classList.toggle('sel',b===el));}
+function setWizStep(n){document.querySelectorAll('#wizSteps .wstep').forEach(w=>w.classList.toggle('active',+w.dataset.s===n));document.querySelectorAll('#wizRight .wiz-panel').forEach(p=>p.classList.toggle('show',+p.dataset.panel===n));}
+function wizGo(n){if(n===2)renderWizSkills();setWizStep(n);}
+function scoreStudent(s){let score=0;if(s.cat===wiz.cat)score+=22;const have=wiz.skills.filter(sk=>s.skills.includes(sk)).length;score+=wiz.skills.length?(have/wiz.skills.length)*52:0;if(s.rate<=wiz.budget)score+=14;else score+=Math.max(0,14-(s.rate-wiz.budget)/20);score+=(s.rating/5)*12;return{score:Math.min(99,Math.round(score)),have};}
+function runMatch(){
+  setWizStep(4);
+  const box=document.getElementById('wizResults');
+  box.innerHTML=`<div class="analyzing"><div class="spinner"></div><div class="a-txt">Matching across ${STUDENTS.length*20}+ profiles…</div><div class="a-sub">Scoring verified skills, portfolio &amp; rate fit</div></div>`;
+  setTimeout(()=>{
+    const ranked=STUDENTS.map(s=>({s,...scoreStudent(s)})).sort((a,b)=>b.score-a.score||b.s.rating-a.s.rating).slice(0,3);
+    const c=catById(wiz.cat);
+    box.innerHTML=`<h4>Your top matches</h4><p class="hint">Ranked by fit for <strong>${c.name}</strong> · skills: ${wiz.skills.join(', ')}</p>`+ranked.map(r=>{
+      const matched=wiz.skills.filter(sk=>r.s.skills.includes(sk));
+      const mChips=matched.length
+        ?matched.map(m=>`<span class="chip match">${m}</span>`).join('')
+        :'<span class="chip">Related skills</span>';
+      return `<div class="result-card" onclick="openProfile(${r.s.id})" style="cursor:pointer;">
+        <div class="rc-top">
+          <div class="avatar">${r.s.initials}</div>
+          <div class="rc-info">
+            <div class="name">${r.s.name}</div>
+            <div class="sub">${r.s.uni}</div>
+          </div>
+          <div class="ring ring-sm">
+            <svg width="38" height="38" viewBox="0 0 54 54">
+              <circle class="track" cx="27" cy="27" r="22" stroke-width="6" fill="none"/>
+              <circle class="prog" cx="27" cy="27" r="22" stroke-width="6" fill="none"
+                stroke-linecap="round" stroke-dasharray="138" stroke-dashoffset="138"/>
+            </svg>
+            <span class="val">${r.score}%</span>
+          </div>
+        </div>
+        <div class="rc-foot">
+          <div class="chips">${mChips}</div>
+          <div class="rc-rate">R${r.s.rate}<span>/hr</span></div>
+        </div>
+      </div>`;
+    }).join('')+`<div class="wiz-nav" style="justify-content:center;gap:12px;"><button class="btn btn-ghost btn-sm" onclick="resetWiz()">↻ Start over</button><button class="btn btn-primary btn-sm" onclick="openProfile(${ranked[0].s.id})">View top match →</button></div>`;
+    requestAnimationFrame(()=>{document.querySelectorAll('#wizResults .ring .prog').forEach((c2,i)=>{c2.style.strokeDashoffset=138-(138*ranked[i].score/100);});});
+    toast('Match complete','We found '+ranked.length+' strong candidates for you.');
+  },1150);
+}
+function resetWiz(){wiz={cat:null,skills:[],budget:300,len:'short'};document.querySelectorAll('#wizCats .opt').forEach(o=>o.classList.remove('sel'));document.getElementById('next1').disabled=true;document.querySelectorAll('#wizBudget .seg button').forEach(b=>b.classList.toggle('sel',b.dataset.b==='300'));document.querySelectorAll('#wizLen button').forEach(b=>b.classList.toggle('sel',b.dataset.l==='short'));setWizStep(1);}
+
+function renderFilterCats(){document.getElementById('filterCats').innerHTML=CATEGORIES.map(c=>`<label class="check"><input type="checkbox" class="fcat" value="${c.id}" checked onchange="renderTalent()"> ${c.name}</label>`).join('');}
+function getActiveCats(){return [...document.querySelectorAll('.fcat:checked')].map(c=>c.value);}
+function starsHtml(r){return `<span class="stars">${IC.star} ${r.toFixed(1)}</span>`;}
+function renderTalent(){
+  const q=(document.getElementById('searchInput').value||'').toLowerCase().trim();
+  const maxRate=+document.getElementById('rateRange').value;
+  document.getElementById('rateLabel').textContent='R'+maxRate+'/hr';
+  const cats=getActiveCats(),showStudent=document.getElementById('fStudent').checked,showGrad=document.getElementById('fGrad').checked,sort=document.getElementById('sortSel').value;
+  let list=STUDENTS.filter(s=>{
+    if(!cats.includes(s.cat))return false;
+    if(s.rate>maxRate)return false;
+    if(s.grad==='student'&&!showStudent)return false;
+    if(s.grad==='grad'&&!showGrad)return false;
+    if(q){const hay=(s.name+' '+s.uni+' '+s.skills.join(' ')).toLowerCase();if(!hay.includes(q))return false;}
+    return true;
+  });
+  if(sort==='rating')list.sort((a,b)=>b.rating-a.rating||b.reviews-a.reviews);
+  if(sort==='low')list.sort((a,b)=>a.rate-b.rate);
+  if(sort==='high')list.sort((a,b)=>b.rate-a.rate);
+  document.getElementById('talentCount').textContent=list.length+' '+(list.length===1?'person':'people')+' available';
+  const grid=document.getElementById('talentGrid');
+  if(!list.length){grid.innerHTML='<div class="no-results"><strong>No talent matches these filters.</strong><br>Try widening your rate range or selecting more fields.</div>';return;}
+  grid.innerHTML=list.map(s=>`<div class="tcard" onclick="openProfile(${s.id})" role="button" tabindex="0" onkeypress="if(event.key==='Enter')openProfile(${s.id})"><div class="thead"><div class="avatar">${s.initials}</div><div style="min-width:0"><div class="name">${s.name}</div><div class="uni">${s.uni}</div><span class="verified">${IC.check} Verified</span></div></div><div class="blurb">${s.blurb}</div><div class="chips">${s.skills.slice(0,4).map(sk=>`<span class="chip">${sk}</span>`).join('')}</div><div class="tfoot">${starsHtml(s.rating)}<div class="rate">R${s.rate}<span>/hr</span></div></div></div>`).join('');
+}
+function resetFilters(){document.getElementById('searchInput').value='';document.getElementById('rateRange').value=400;document.getElementById('fStudent').checked=true;document.getElementById('fGrad').checked=true;document.querySelectorAll('.fcat').forEach(c=>c.checked=true);document.getElementById('sortSel').value='rating';renderTalent();}
+function filterToCat(id){
+  openCatalog();
+  // slight delay so catalog is visible before filtering
+  setTimeout(function(){
+    document.querySelectorAll('.fcat').forEach(c=>c.checked=(c.value===id));
+    document.getElementById('rateRange').value=400;
+    renderTalent();
+  },80);
+}
+
+function openProfile(id){
+  const s=STUDENTS.find(x=>x.id===id);if(!s)return;const c=catById(s.cat);
+  document.getElementById('modal').innerHTML=`
+    <div class="modal-head"><div style="display:flex;gap:14px;align-items:center"><div class="avatar" style="width:58px;height:58px;font-size:1.3rem">${s.initials}</div><div><h3 style="font-size:1.3rem">${s.name}</h3><div style="font-size:.85rem;color:var(--muted)">${s.uni}</div><div style="margin-top:5px;display:flex;gap:8px;align-items:center;flex-wrap:wrap">${starsHtml(s.rating)}<span style="font-size:.8rem;color:var(--muted)">(${s.reviews} reviews)</span><span class="verified">${IC.check} Verified</span></div></div></div><button class="modal-x" onclick="closeModal()" aria-label="Close">×</button></div>
+    <div class="modal-body">
+      <p style="color:var(--ink-soft);margin-bottom:20px">${s.blurb}</p>
+      <div class="stat-row"><div class="stat"><div class="sl">Rate</div><div class="sv">R${s.rate}<span style="font-size:.8rem;font-weight:400;color:var(--muted)">/hr</span></div></div><div class="stat"><div class="sl">Field</div><div class="sv" style="font-size:.95rem">${c.name}</div></div><div class="stat"><div class="sl">Status</div><div class="sv" style="font-size:.95rem">${s.grad==='student'?'Current student':'Graduate'}</div></div></div>
+      <h4 style="font-size:.95rem;margin-bottom:14px">Skills matrix</h4>
+      ${s.matrix.map(m=>`<div class="matrix-row"><div class="mh"><span>${m[0]}</span><span class="lvl">${m[1]}%</span></div><div class="bar"><i data-w="${m[1]}"></i></div></div>`).join('')}
+      <h4 style="font-size:.95rem;margin:24px 0 14px">Portfolio</h4>
+      ${s.port.map(p=>`<div class="port-item"><span class="pi">${IC.port}</span><div><div class="pt">${p[0]}</div><div class="pd">${p[1]}</div></div><a href="#" onclick="toast('Demo link','Portfolio links open in the full version.');return false;" style="margin-left:auto;font-family:'Plus Jakarta Sans';font-weight:600;font-size:.82rem">View ↗</a></div>`).join('')}
+      <div class="modal-foot"><button class="btn btn-primary btn-block btn-lg" onclick="closeModal();openHire(${s.id})">Invite to project</button><button class="btn btn-outline btn-lg" onclick="toast('Message sent','Chat opens in the full version.')">Message</button></div>
+    </div>`;
+  showOverlay();
+  requestAnimationFrame(()=>setTimeout(()=>{document.querySelectorAll('#modal .bar > i').forEach(b=>b.style.width=b.dataset.w+'%');},60));
+}
+
+function openHire(id){const s=STUDENTS.find(x=>x.id===id);jobModal('Invite '+(s?s.name:'talent')+' to a project',s?s.cat:'');}
+function openJob(){jobModal('Post a job','');}
+const TIMELINES=[
+  {val:'<1w',  label:'Under 1 week', sub:'Quick fix or review'},
+  {val:'1-2w', label:'1 – 2 weeks',  sub:'Small feature or task'},
+  {val:'2-4w', label:'2 – 4 weeks',  sub:'Short project'},
+  {val:'1-2m', label:'1 – 2 months', sub:'Medium-scope build'},
+  {val:'3-6m', label:'3 – 6 months', sub:'Full project or app'},
+  {val:'flex', label:'Flexible',      sub:'To be agreed'},
+];
+function pickTimeline(val){
+  document.querySelectorAll('.tpill').forEach(p=>p.classList.toggle('sel',p.dataset.t===val));
+  document.getElementById('jTimeline').value=val;
+  document.getElementById('ff-timeline').classList.remove('err');
+}
+function jobModal(title,presetCat){
+  document.getElementById('modal').innerHTML=`
+    <div class="modal-head"><div><h3 style="font-size:1.25rem">${title}</h3><div style="font-size:.85rem;color:var(--muted);margin-top:3px">Fill this in and we'll match talent — or notify your invitee.</div></div><button class="modal-x" onclick="closeModal()" aria-label="Close">×</button></div>
+    <div class="modal-body">
+      <div class="form-field" id="ff-title"><label for="jTitle">Project title</label><input id="jTitle" type="text" placeholder="e.g. Build a booking website for my salon"><div class="errmsg">Give your project a short title.</div></div>
+      <div class="form-field" id="ff-cat"><label for="jCat">Field</label><select id="jCat"><option value="">Select a field…</option>${CATEGORIES.map(c=>`<option value="${c.id}" ${c.id===presetCat?'selected':''}>${c.name}</option>`).join('')}</select><div class="errmsg">Choose a field.</div></div>
+      <div class="form-field" id="ff-budget"><label for="jBudget">Budget (R)</label><input id="jBudget" type="number" inputmode="numeric" min="0" placeholder="e.g. 3500"><div class="errmsg">Enter a budget as a number.</div></div>
+      <div class="form-field" id="ff-timeline">
+        <label>Timeline</label>
+        <input type="hidden" id="jTimeline" value="">
+        <div class="tpill-grid">
+          ${TIMELINES.map(t=>`<button type="button" class="tpill" data-t="${t.val}" onclick="pickTimeline('${t.val}')">${t.label}<span>${t.sub}</span></button>`).join('')}
+        </div>
+        <div class="errmsg">Please select a timeline for your project.</div>
+      </div>
+      <div class="form-field" id="ff-desc"><label for="jDesc">What needs doing?</label><textarea id="jDesc" rows="3" placeholder="A sentence or two about the work…"></textarea><div class="errmsg">Add a short description (at least 15 characters).</div></div>
+      <button class="btn btn-primary btn-block btn-lg" onclick="submitJob()">${title.startsWith('Invite')?'Send invitation':'Post job & find matches'}</button>
+    </div>`;
+  showOverlay();setTimeout(()=>document.getElementById('jTitle').focus(),120);
+}
+function submitJob(){
+  let ok=true;
+  const t=document.getElementById('jTitle'),c=document.getElementById('jCat'),
+        b=document.getElementById('jBudget'),tl=document.getElementById('jTimeline'),d=document.getElementById('jDesc');
+  const set=(id,bad)=>{document.getElementById(id).classList.toggle('err',bad);if(bad)ok=false;};
+  set('ff-title',!t.value.trim());
+  set('ff-cat',!c.value);
+  set('ff-budget',!b.value||isNaN(+b.value)||+b.value<=0);
+  set('ff-timeline',!tl.value);
+  set('ff-desc',d.value.trim().length<15);
+  if(!ok)return;
+  const tlLabel=TIMELINES.find(x=>x.val===tl.value)?.label||tl.value;
+  closeModal();
+  toast('Job posted','Matching '+c.options[c.selectedIndex].text+' talent — timeline: '+tlLabel+'.');
+}
+
+// ── Smart Match page (mobile) ────────────────────────────────────
+let _wizHome=null;
+function openWizPage(){
+  const panel=document.getElementById('wizRight');
+  const mount=document.getElementById('wizPageMount');
+  if(!_wizHome){_wizHome=panel.parentNode;}        // remember original parent (.wiz-grid)
+  mount.appendChild(panel);                         // move interactive panel into overlay
+  document.getElementById('wizPageOverlay').classList.add('open');
+  document.body.style.overflow='hidden';
+  const sheet=document.querySelector('.wizpage-sheet');
+  if(sheet)sheet.scrollTop=0;
+}
+function closeWizPage(){
+  const panel=document.getElementById('wizRight');
+  document.getElementById('wizPageOverlay').classList.remove('open');
+  document.body.style.overflow='';
+  if(_wizHome){_wizHome.appendChild(panel);}        // move panel back to the section
+}
+// ── Catalog ──────────────────────────────────────────────────────
+const FEATURED_IDS=[7,2,5]; // Zanele (dev·5.0), Thabo (data·4.8), Naledi (design·4.8)
+function renderFeatured(){
+  const grid=document.getElementById('featGrid');
+  if(!grid)return;
+  const list=STUDENTS.filter(s=>FEATURED_IDS.includes(s.id));
+  grid.innerHTML=list.map(s=>{
+    const chips=s.skills.slice(0,4).map(sk=>`<span class="chip">${sk}</span>`).join('');
+    return `<div class="tcard" onclick="openProfile(${s.id})" role="button" tabindex="0">
+      <div class="thead"><div class="avatar">${s.initials}</div>
+        <div style="min-width:0"><div class="name">${s.name}</div><div class="uni">${s.uni}</div>
+        <span class="verified">${IC.check} Verified</span></div></div>
+      <div class="blurb">${s.blurb}</div>
+      <div class="chips">${chips}</div>
+      <div class="tfoot">${starsHtml(s.rating)}<div class="rate">R${s.rate}<span>/hr</span></div></div>
+    </div>`;
+  }).join('');
+}
+function openCatalog(){
+  var el=document.getElementById('catalogOverlay');
+  el.classList.add('open');
+  document.body.style.overflow='hidden';
+  el.scrollTop=0;
+  renderFilterCats();
+  renderTalent();
+}
+function closeCatalog(){
+  var el=document.getElementById('catalogOverlay');
+  el.classList.remove('open');
+  document.body.style.overflow='';
+}
+// ─────────────────────────────────────────────────────────────────
+function showOverlay(){document.getElementById('overlay').classList.add('show');document.body.style.overflow='hidden';}
+function closeModal(){document.getElementById('overlay').classList.remove('show');document.body.style.overflow='';}
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeModal();closeCatalog();closeWizPage();toggleMnav(false);}});
+function toast(title,desc){const w=document.getElementById('toastWrap');const el=document.createElement('div');el.className='toast';el.innerHTML=`<span class="ti">${IC.check}</span><div><div class="tt">${title}</div><div class="td">${desc}</div></div><button class="tx" aria-label="Dismiss">×</button>`;el.querySelector('.tx').onclick=()=>dismiss(el);w.appendChild(el);setTimeout(()=>dismiss(el),4600);}
+function dismiss(el){el.classList.add('out');setTimeout(()=>el.remove(),300);}
+function toggleMnav(on){document.getElementById('mnav').classList.toggle('show',on);document.body.style.overflow=on?'hidden':'';}
+function scrollToId(id){document.getElementById(id).scrollIntoView({behavior:'smooth',block:'start'});}
+
+const _nav=document.getElementById('siteNav');
+window.addEventListener('scroll',()=>{_nav.classList.toggle('scrolled',window.scrollY>16);},{passive:true});
+
+// ═══════════════════════ AUTH & PROFILE ═══════════════════════
+// In-memory session (artifacts can't use localStorage). Resets on reload.
+let USER = null;
+let signupRole = 'client';   // 'client' (find talent) | 'talent' (offer skills)
+
+const G_ICON = '<svg viewBox="0 0 24 24"><path fill="#4285F4" d="M22.5 12.2c0-.7-.1-1.4-.2-2H12v3.9h5.9a5 5 0 01-2.2 3.3v2.7h3.6c2.1-2 3.2-4.9 3.2-7.9z"/><path fill="#34A853" d="M12 23c2.9 0 5.4-1 7.2-2.6l-3.6-2.7c-1 .7-2.3 1.1-3.6 1.1-2.8 0-5.1-1.9-6-4.4H2.3v2.8A11 11 0 0012 23z"/><path fill="#FBBC05" d="M6 14.4a6.6 6.6 0 010-4.2V7.4H2.3a11 11 0 000 9.8z"/><path fill="#EA4335" d="M12 5.4c1.6 0 3 .5 4.1 1.6l3.1-3.1A11 11 0 002.3 7.4L6 10.2C6.9 7.7 9.2 5.4 12 5.4z"/></svg>';
+const A_ICON = '<svg viewBox="0 0 24 24" fill="#000"><path d="M16.4 12.7c0-2 1.6-3 1.7-3a3.8 3.8 0 00-3-1.6c-1.3-.1-2.5.7-3.1.7-.7 0-1.7-.7-2.8-.7-1.4 0-2.8.8-3.5 2.1-1.5 2.6-.4 6.5 1.1 8.6.7 1 1.5 2.2 2.6 2.2 1 0 1.4-.7 2.7-.7s1.6.7 2.7.7 1.8-1 2.5-2a8.8 8.8 0 001.1-2.3c-.1 0-2.1-.8-2.1-3zM14.3 6.3c.6-.7 1-1.7.9-2.7-.9 0-1.9.6-2.5 1.3-.5.6-1 1.6-.9 2.6 1 .1 1.9-.5 2.5-1.2z"/></svg>';
+
+function authClose(){closeModal();}
+
+// ---- Account-type chooser (first signup step) ----
+function openSignup(){
+  document.getElementById('modal').classList.add('auth-modal');
+  document.getElementById('modal').innerHTML = `
+    <div class="modal-head"><div><h3 style="font-size:1.25rem">Join iSpani</h3><div style="font-size:.85rem;color:var(--muted);margin-top:3px">How do you want to use iSpani?</div></div><button class="modal-x" onclick="authClose()" aria-label="Close">×</button></div>
+    <div class="auth-body" style="padding-top:18px">
+      <div class="acct-pick" id="acctPick">
+        <div class="acct-card ${signupRole==='client'?'sel':''}" data-role="client" onclick="pickRole('client')">
+          <span class="ac-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V7l8-4v18M19 21V11l-6-4"/><path d="M9 9v.01M9 12v.01M9 15v.01M9 18v.01"/></svg></span>
+          <div><h4>I'm a business</h4><p>I want to hire ICT talent</p></div>
+          <span class="ac-radio"></span>
+        </div>
+        <div class="acct-card ${signupRole==='talent'?'sel':''}" data-role="talent" onclick="pickRole('talent')">
+          <span class="ac-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></span>
+          <div><h4>I'm a student / graduate</h4><p>I want to offer my ICT skills</p></div>
+          <span class="ac-radio"></span>
+        </div>
+      </div>
+      <button class="btn btn-primary btn-block btn-lg" style="margin-top:18px" onclick="openSignupForm()">Continue →</button>
+      <div class="auth-switch">Already have an account? <button onclick="openLogin()">Log in</button></div>
+    </div>`;
+  showOverlay();
+}
+function pickRole(r){signupRole=r;document.querySelectorAll('#acctPick .acct-card').forEach(c=>c.classList.toggle('sel',c.dataset.role===r));}
+
+// ---- Signup form ----
+function openSignupForm(){
+  const roleLabel = signupRole==='talent' ? 'as ICT talent' : 'as a business';
+  document.getElementById('modal').classList.add('auth-modal');
+  document.getElementById('modal').innerHTML = `
+    <div class="modal-head"><button class="modal-x" style="background:transparent" onclick="openSignup()" aria-label="Back">‹</button><div style="flex:1"></div><button class="modal-x" onclick="authClose()" aria-label="Close">×</button></div>
+    <div class="auth-body" style="padding-top:0">
+      <h3>Sign up to find work</h3>
+      <div class="auth-sub">Joining ${roleLabel}</div>
+      <button class="oauth-btn" onclick="oauthSignup('Google')">${G_ICON} Continue with Google</button>
+      <button class="oauth-btn" onclick="oauthSignup('Apple')">${A_ICON} Continue with Apple</button>
+      <div class="auth-or">or sign up with email</div>
+      <div class="form-field" id="su-name"><label for="suName">Full name</label><input id="suName" type="text" placeholder="e.g. Lerato Mokoena"><div class="errmsg">Please enter your name.</div></div>
+      <div class="form-field" id="su-email"><label for="suEmail">Email</label><input id="suEmail" type="email" inputmode="email" placeholder="you@example.com"><div class="errmsg">Enter a valid email address.</div></div>
+      <div class="form-field" id="su-pass"><label for="suPass">Password (8+ characters)</label><input id="suPass" type="password" placeholder="Create a password"><div class="errmsg">Password must be at least 8 characters.</div></div>
+      <div class="form-field" id="su-loc"><label for="suLoc">Location</label><select id="suLoc"><option value="">Select your city…</option><option>Cape Town</option><option>Johannesburg</option><option>Durban</option><option>Pretoria</option><option>Gqeberha</option><option>Bloemfontein</option><option>Other (South Africa)</option></select><div class="errmsg">Please select your location.</div></div>
+      <label class="check-row"><input type="checkbox" id="suTos"> <span>I have read and agree to the <button type="button" class="terms-link" onclick="openTerms()">Terms of Use &amp; Privacy Policy</button>, and I consent to iSpani processing my personal information in line with POPIA.</span></label>
+      <div class="sec-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6z"/><path d="M9 12l2 2 4-4"/></svg><span>Your account is protected with two-factor authentication. We'll verify a one-time code after this step.</span></div>
+      <button class="btn btn-primary btn-block btn-lg" onclick="submitSignup()">Create my account</button>
+      <div class="auth-switch">Already have an account? <button onclick="openLogin()">Log in</button></div>
+    </div>`;
+  showOverlay();
+  setTimeout(()=>document.getElementById('suName').focus(),120);
+}
+function submitSignup(){
+  let ok=true;
+  const n=document.getElementById('suName'),e=document.getElementById('suEmail'),
+        p=document.getElementById('suPass'),l=document.getElementById('suLoc'),t=document.getElementById('suTos');
+  const set=(id,bad)=>{document.getElementById(id).classList.toggle('err',bad);if(bad)ok=false;};
+  set('su-name',!n.value.trim());
+  set('su-email',!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(e.value.trim()));
+  set('su-pass',p.value.length<8);
+  set('su-loc',!l.value);
+  if(!t.checked){ok=false;toast('One more step','Please accept the Terms of Use to continue.');}
+  if(!ok)return;
+  // Proceed to 2FA before creating the account
+  start2FA({
+    name:n.value.trim(), email:e.value.trim(), location:l.value, role:signupRole, method:'email',
+    tosAcceptedAt:new Date().toISOString(),
+    done:()=>{ toast('Welcome to iSpani 🎉', (signupRole==='talent'?'Your talent profile':'Your account')+' is ready.'); }
+  });
+}
+function oauthSignup(provider){
+  // Simulated OAuth — in production this redirects to the provider, which handles 2FA.
+  if(!document.getElementById('suTos') || !document.getElementById('suTos').checked){
+    toast('Accept the Terms first','Please tick the Terms of Use box, then continue with '+provider+'.');
+    return;
+  }
+  const name = provider==='Google' ? 'Google User' : 'Apple User';
+  signIn(name, name.toLowerCase().replace(' ','.')+'@'+provider.toLowerCase()+'.com', 'Cape Town', signupRole, provider);
+  if(USER){USER.tosAcceptedAt=new Date().toISOString();USER.twoFA=true;}
+  authClose();
+  toast('Signed up with '+provider, 'Welcome to iSpani!');
+}
+
+// ---- Login ----
+function openLogin(){
+  document.getElementById('modal').classList.add('auth-modal');
+  document.getElementById('modal').innerHTML = `
+    <div class="modal-head"><div style="flex:1"></div><button class="modal-x" onclick="authClose()" aria-label="Close">×</button></div>
+    <div class="auth-body" style="padding-top:0">
+      <h3>Log in to iSpani</h3>
+      <div class="auth-sub">Welcome back</div>
+      <button class="oauth-btn" onclick="oauthLogin('Google')">${G_ICON} Continue with Google</button>
+      <button class="oauth-btn" onclick="oauthLogin('Apple')">${A_ICON} Continue with Apple</button>
+      <div class="auth-or">or</div>
+      <div class="form-field" id="li-id"><label for="liId">Username or email</label><input id="liId" type="text" placeholder="you@example.com"><div class="errmsg">Enter your username or email.</div></div>
+      <div class="form-field" id="li-pass"><label for="liPass">Password</label><input id="liPass" type="password" placeholder="Your password"><div class="errmsg">Enter your password.</div></div>
+      <button class="btn btn-primary btn-block btn-lg" onclick="submitLogin()">Log in</button>
+      <div class="auth-switch">New to iSpani? <button onclick="openSignup()">Sign up</button></div>
+      <div class="sec-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6z"/><path d="M9 12l2 2 4-4"/></svg><span>Protected by two-factor authentication. We'll send a one-time code to confirm it's you.</span></div>
+    </div>`;
+  showOverlay();
+  setTimeout(()=>document.getElementById('liId').focus(),120);
+}
+function submitLogin(){
+  let ok=true;
+  const id=document.getElementById('li-id'),p=document.getElementById('li-pass');
+  const idv=document.getElementById('liId').value.trim(), pv=document.getElementById('liPass').value;
+  const set=(el,bad)=>{el.classList.toggle('err',bad);if(bad)ok=false;};
+  set(id,!idv); set(p,!pv);
+  if(!ok)return;
+  const name = idv.includes('@') ? idv.split('@')[0].replace(/[._]/g,' ').replace(/\b\w/g,c=>c.toUpperCase()) : idv;
+  start2FA({
+    name, email: idv.includes('@')?idv:idv+'@ispani.co.za', location:'Cape Town', role:'talent', method:'email',
+    done:()=>{ toast('Welcome back', 'You are logged in.'); }
+  });
+}
+function oauthLogin(provider){
+  const name = provider==='Google' ? 'Google User' : 'Apple User';
+  signIn(name, name.toLowerCase().replace(' ','.')+'@'+provider.toLowerCase()+'.com', 'Cape Town', 'talent', provider);
+  if(USER)USER.twoFA=true; // provider handles 2FA on its side
+  authClose();
+  toast('Logged in with '+provider, 'Welcome back!');
+}
+
+// ---- Session helpers ----
+function initials(name){return name.trim().split(/\s+/).slice(0,2).map(w=>w[0]||'').join('').toUpperCase()||'U';}
+function signIn(name,email,location,role,method){
+  USER={name,email,location,role,method,
+        avatar:null,           // profile picture URL (none yet → icon/initials shown)
+        initials:initials(name),
+        title: role==='talent'?'ICT Student / Graduate':'Business / Client',
+        rate: role==='talent'?250:null,
+        skills: role==='talent'?['Add your skills']:[],
+        about:''};
+  renderNavAuth();
+}
+// ════════════════ TWO-FACTOR AUTHENTICATION ════════════════
+// NOTE: In production the OTP is generated and verified SERVER-SIDE and
+// delivered via SMS/email/authenticator app. This prototype simulates the
+// flow client-side for demonstration only and is NOT secure on its own.
+let _2fa = null;
+function _genOTP(){return String(Math.floor(100000 + Math.random()*900000));}
+function start2FA(payload){
+  _2fa = { payload, code:_genOTP(), tries:0 };
+  const masked = maskEmail(payload.email);
+  document.getElementById('modal').classList.add('auth-modal');
+  document.getElementById('modal').innerHTML = `
+    <div class="modal-head"><button class="modal-x" style="background:transparent" onclick="${payload.role&&payload.tosAcceptedAt?'openSignupForm':'openLogin'}()" aria-label="Back">‹</button><div style="flex:1"></div><button class="modal-x" onclick="authClose()" aria-label="Close">×</button></div>
+    <div class="auth-body" style="padding-top:0">
+      <div class="as-ico" style="margin:0 auto 16px;width:58px;height:58px;border-radius:50%;background:var(--blue-50);color:var(--blue);display:grid;place-items:center"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/></svg></div>
+      <h3>Verify it's you</h3>
+      <div class="auth-sub">Enter the 6-digit code we sent to <strong>${masked}</strong></div>
+      <div class="otp-wrap" id="otpWrap">
+        ${[0,1,2,3,4,5].map(i=>`<input class="otp-box" id="otp${i}" inputmode="numeric" maxlength="1" autocomplete="one-time-code" aria-label="Digit ${i+1}">`).join('')}
+      </div>
+      <div class="form-field" id="otp-err" style="margin:0"><div class="errmsg" style="text-align:center">That code isn't right. Please try again.</div></div>
+      <div class="otp-meta">Didn't get it? <button class="otp-resend" onclick="resend2FA()">Resend code</button></div>
+      <button class="btn btn-primary btn-block btn-lg" onclick="verify2FA()">Verify &amp; continue</button>
+      <div class="otp-demo">Prototype demo — your code is <b id="otpDemo">${_2fa.code}</b></div>
+    </div>`;
+  showOverlay();
+  setupOTPInputs();
+  setTimeout(()=>{const f=document.getElementById('otp0');if(f)f.focus();},120);
+}
+function maskEmail(e){
+  if(!e||!e.includes('@'))return e||'your contact';
+  const [u,d]=e.split('@');
+  return (u.length<=2?u[0]+'*':u.slice(0,2)+'***')+'@'+d;
+}
+function setupOTPInputs(){
+  const boxes=[...document.querySelectorAll('.otp-box')];
+  boxes.forEach((b,i)=>{
+    b.addEventListener('input',()=>{
+      b.value=b.value.replace(/\D/g,'').slice(0,1);
+      if(b.value && i<boxes.length-1)boxes[i+1].focus();
+      document.getElementById('otp-err').classList.remove('err');
+    });
+    b.addEventListener('keydown',e=>{
+      if(e.key==='Backspace' && !b.value && i>0)boxes[i-1].focus();
+      if(e.key==='Enter')verify2FA();
+    });
+    b.addEventListener('paste',e=>{
+      e.preventDefault();
+      const d=(e.clipboardData.getData('text')||'').replace(/\D/g,'').slice(0,6).split('');
+      boxes.forEach((bx,j)=>bx.value=d[j]||'');
+      if(d.length)boxes[Math.min(d.length,5)].focus();
+    });
+  });
+}
+function resend2FA(){
+  _2fa.code=_genOTP(); _2fa.tries=0;
+  const d=document.getElementById('otpDemo'); if(d)d.textContent=_2fa.code;
+  toast('Code resent','A new code is on its way.');
+}
+function verify2FA(){
+  if(!_2fa)return;
+  const entered=[0,1,2,3,4,5].map(i=>document.getElementById('otp'+i).value).join('');
+  if(entered.length<6){document.getElementById('otp-err').classList.add('err');return;}
+  if(entered!==_2fa.code){
+    _2fa.tries++;
+    document.getElementById('otp-err').classList.add('err');
+    [...document.querySelectorAll('.otp-box')].forEach(b=>b.value='');
+    document.getElementById('otp0').focus();
+    if(_2fa.tries>=5){ authClose(); toast('Too many attempts','For your security, please start again.'); _2fa=null; }
+    return;
+  }
+  // Success → create/establish the session
+  const p=_2fa.payload;
+  signIn(p.name, p.email, p.location, p.role, p.method);
+  if(p.tosAcceptedAt && USER) USER.tosAcceptedAt = p.tosAcceptedAt;
+  if(USER) USER.twoFA = true;
+  _2fa=null;
+  authClose();
+  if(typeof p.done==='function')p.done();
+}
+
+// ════════════════ TERMS OF USE (POPIA-aligned) ════════════════
+function openTerms(){
+  document.getElementById('modal').classList.add('auth-modal');
+  document.getElementById('modal').innerHTML = `
+    <div class="modal-head"><div><h3 style="font-size:1.2rem">Terms of Use &amp; Privacy</h3><div class="terms-doc upd" style="margin-top:3px">Last updated: June 2026 · iSpani (Pty) Ltd</div></div><button class="modal-x" onclick="openSignupForm()" aria-label="Close">×</button></div>
+    <div class="modal-body">
+      <div class="terms-doc">
+        <h4>1. Who we are</h4>
+        <p>iSpani (Pty) Ltd ("iSpani", "we") operates this marketplace connecting South African ICT students and graduates with businesses. We are the Responsible Party for your personal information under the Protection of Personal Information Act, 2013 (POPIA).</p>
+
+        <h4>2. Information we collect</h4>
+        <ul>
+          <li>Account details: name, email, password (stored hashed), location and account type.</li>
+          <li>Profile data you choose to add: skills, portfolio, education and rate.</li>
+          <li>Verification data: proof of enrolment or qualification, processed only to confirm credibility.</li>
+          <li>Technical data: device, log and security information used to protect your account.</li>
+        </ul>
+
+        <h4>3. How we use it (purpose limitation)</h4>
+        <p>We process your information only to operate the marketplace — creating your account, matching talent with work, enabling secure payments via escrow, and keeping the platform safe. We do not sell your personal information.</p>
+
+        <h4>4. Your POPIA rights</h4>
+        <ul>
+          <li>Access the personal information we hold about you.</li>
+          <li>Request correction or deletion of your information.</li>
+          <li>Object to processing or withdraw consent at any time.</li>
+          <li>Lodge a complaint with the Information Regulator (South Africa).</li>
+        </ul>
+
+        <h4>5. Consent</h4>
+        <p>By creating an account you consent to the processing of your personal information as described here. Consent is voluntary and may be withdrawn, though some features may then be unavailable. Where you are under 18, a parent or guardian must consent on your behalf.</p>
+
+        <h4>6. Security</h4>
+        <p>We apply technical and organisational safeguards including encryption in transit and at rest, hashed passwords, two-factor authentication, access controls and monitoring. No system is perfectly secure, and you are responsible for keeping your credentials confidential.</p>
+
+        <h4>7. Data retention &amp; sharing</h4>
+        <p>We keep your information only as long as needed for the purposes above or as required by law, then delete or anonymise it. Limited sharing occurs with payment and verification providers under contract, and with authorities where legally required.</p>
+
+        <h4>8. Contact</h4>
+        <p>Information Officer, iSpani (Pty) Ltd — privacy@ispani.co.za. You may also contact the Information Regulator at inforeg.org.za.</p>
+
+        <p class="upd" style="margin-top:14px">This is a prototype document for demonstration. Have it reviewed by a qualified South African attorney before launch.</p>
+      </div>
+      <button class="btn btn-primary btn-block btn-lg" style="margin-top:18px" onclick="acceptTermsFromDoc()">I agree — go back</button>
+    </div>`;
+  showOverlay();
+}
+function acceptTermsFromDoc(){
+  openSignupForm();
+  setTimeout(()=>{const c=document.getElementById('suTos');if(c)c.checked=true;},60);
+}
+
+function signOut(){USER=null;renderNavAuth();closeProfilePage();toast('Signed out','See you soon.');}
+
+// ---- Nav reflects auth state ----
+function renderNavAuth(){
+  document.querySelectorAll('[data-auth-guest]').forEach(el=>el.style.display = USER?'none':'');
+  document.querySelectorAll('[data-auth-user]').forEach(el=>el.style.display = USER?'':'none');
+  if(USER){
+    document.querySelectorAll('.na-av').forEach(a=>a.textContent=USER.initials);
+    document.querySelectorAll('.na-name').forEach(n=>n.textContent=USER.name.split(' ')[0]);
+  }
+  renderProfileBtn();
+}
+// Profile button: pic if logged-in & has one, else initials if logged-in, else generic icon
+function renderProfileBtn(){
+  const b=document.getElementById('navProf');
+  if(!b)return;
+  if(USER && USER.avatar){
+    b.innerHTML='<img src="'+USER.avatar+'" alt="'+USER.name+'">';
+    b.setAttribute('aria-label','Your profile');
+  }else if(USER){
+    b.innerHTML='<span class="np-initials">'+USER.initials+'</span>';
+    b.setAttribute('aria-label','Your profile');
+  }else{
+    b.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a7 7 0 0114 0v1"/></svg>';
+    b.setAttribute('aria-label','Log in or sign up');
+  }
+}
+// Profile button click: logged in → profile page; else → auth slider
+function profileBtn(){
+  if(USER){openProfilePage();}
+  else{toggleAuthSlider(true);}
+}
+function toggleAuthSlider(on){
+  document.getElementById('authSlider').classList.toggle('show',on);
+  document.body.style.overflow=on?'hidden':'';
+}
+
+// ---- Profile page ----
+function openProfilePage(){
+  if(!USER){openLogin();return;}
+  const u=USER;
+  const skillsHtml = (u.role==='talent' && u.skills.length)
+    ? u.skills.map(s=>`<span class="chip">${s}</span>`).join('')
+    : '<span class="pf-empty">No skills added yet.</span>';
+  const rateHtml = u.role==='talent'
+    ? `<div class="pf-rate"><div class="r-n">R${u.rate}<span style="font-size:.9rem;font-weight:400;color:var(--muted)">/hr</span></div><div class="r-l">Hourly rate</div></div>` : '';
+  document.getElementById('profileMount').innerHTML = `
+    <div class="pf-card">
+      <div class="pf-id">
+        <div class="pf-av">${u.initials}</div>
+        <div class="pf-id-main">
+          <h1>${u.name}</h1>
+          <div class="pf-title">${u.title}</div>
+          <div class="pf-loc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-5.5-7-11a7 7 0 0114 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>${u.location}, South Africa</div>
+          ${u.role==='talent'?'<span class="pf-verified">'+IC.check+' Verification pending</span>':''}
+        </div>
+        ${rateHtml}
+      </div>
+      <div class="pf-actions">
+        <button class="btn btn-primary" onclick="toast('Coming soon','Profile editing is part of the next build phase.')">Edit profile</button>
+        <button class="btn btn-outline" onclick="signOut()">Sign out</button>
+      </div>
+    </div>
+
+    <div class="pf-grid">
+      <div class="pf-block">
+        <h3>About</h3>
+        ${u.about?`<p>${u.about}</p>`:'<p class="pf-empty">Tell clients about yourself — add a short bio in the next build phase.</p>'}
+      </div>
+      <div class="pf-block">
+        <h3>${u.role==='talent'?'Skills':'Hiring interests'}</h3>
+        <div class="chips">${skillsHtml}</div>
+      </div>
+      <div class="pf-block">
+        <h3>${u.role==='talent'?'Portfolio':'Posted jobs'}</h3>
+        <p class="pf-empty">${u.role==='talent'?'No portfolio items yet.':'No jobs posted yet.'}</p>
+      </div>
+      <div class="pf-block">
+        <h3>Account</h3>
+        <p style="color:var(--muted);font-size:.86rem"><strong style="color:var(--ink)">Email:</strong> ${u.email}<br>
+        <strong style="color:var(--ink)">Signed in via:</strong> ${u.method}<br>
+        <strong style="color:var(--ink)">Account type:</strong> ${u.role==='talent'?'ICT talent':'Business'}<br>
+        <strong style="color:var(--ink)">Two-factor auth:</strong> ${u.twoFA?'<span style="color:var(--blue);font-weight:700">Enabled ✓</span>':'Off'}<br>
+        <strong style="color:var(--ink)">Terms accepted:</strong> ${u.tosAcceptedAt?new Date(u.tosAcceptedAt).toLocaleDateString():'—'}</p>
+      </div>
+    </div>`;
+  document.getElementById('profileOverlay').classList.add('open');
+  document.body.style.overflow='hidden';
+  document.getElementById('profileOverlay').scrollTop=0;
+}
+function closeProfilePage(){
+  document.getElementById('profileOverlay').classList.remove('open');
+  document.body.style.overflow='';
+}
+
+// Wire profile/auth into existing modal cleanup (remove auth-modal class on close)
+const _origCloseModal = closeModal;
+closeModal = function(){document.getElementById('modal').classList.remove('auth-modal');_origCloseModal();};
+
+// Escape also closes profile
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeProfilePage();toggleAuthSlider(false);}});
+
+renderNavAuth();
+renderCats();renderWizCats();renderFeatured();setWizStep(1);
+
+// ── Flow section sequential animation ──
+(function(){
+  var fl=document.querySelector('.flow');
+  if(!fl)return;
+  if(window.matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+  fl.classList.add('will-animate');
+  var io=new IntersectionObserver(function(entries,obs){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        fl.classList.remove('will-animate');
+        // force reflow so CSS picks up the new class cleanly
+        void fl.offsetWidth;
+        fl.classList.add('animated');
+        obs.disconnect();
+      }
+    });
+  },{threshold:0.35});
+  io.observe(fl);
+})();
+</script>
+</body>
+</html>
