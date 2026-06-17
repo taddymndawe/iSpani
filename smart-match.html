@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<meta name="theme-color" content="#2B57DC" />
+<title>Smart Match — iSpani</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;450;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="nav" id="siteNav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="index.html" aria-label="iSpani home"><span class="dot"><span class="dot-bg"></span><span class="dot-txt">iS</span></span><span class="brand-name">iSpani</span></a>
+    <nav class="nav-links" aria-label="Primary">
+      <a class="link" href="index.html#categories">Browse skills</a>
+      <a class="link" href="smart-match.html">Smart match</a>
+      <a class="link" href="catalog.html">Find talent</a>
+      <a class="link" href="index.html#how">How it works</a>
+    </nav>
+    <div class="nav-cta">
+      <button class="btn btn-outline btn-sm" data-auth-guest onclick="openLogin()">Log in</button>
+      <button class="btn btn-primary btn-sm" data-auth-guest onclick="openSignup()">Join free</button>
+      <button class="hamburger" aria-label="Open menu" onclick="toggleMnav(true)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+      <button class="nav-prof" id="navProf" aria-label="Profile" onclick="profileBtn()"></button>
+    </div>
+  </div>
+</header>
+
+<div class="mnav" id="mnav">
+  <button class="mclose" aria-label="Close menu" onclick="toggleMnav(false)">×</button>
+  <a href="index.html#categories" onclick="toggleMnav(false)">Browse skills</a>
+  <a href="smart-match.html" onclick="toggleMnav(false)">Smart match</a>
+  <a href="catalog.html" onclick="toggleMnav(false)">Find talent</a>
+  <a href="index.html#how" onclick="toggleMnav(false)">How it works</a>
+  <a href="profile.html" data-auth-user style="display:none" onclick="toggleMnav(false)">My profile</a>
+  <button class="btn btn-outline btn-block" data-auth-guest onclick="toggleMnav(false);openLogin()">Log in</button>
+  <button class="btn btn-primary btn-block" data-auth-guest onclick="toggleMnav(false);openSignup()">Join free</button>
+  <button class="btn btn-outline btn-block" data-auth-user style="display:none" onclick="toggleMnav(false);signOut()">Sign out</button>
+</div>
+
+<!-- AUTH SLIDER (for profile button when logged out) -->
+<div class="auth-slider" id="authSlider">
+  <button class="as-close" aria-label="Close" onclick="toggleAuthSlider(false)">×</button>
+  <div class="as-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a7 7 0 0114 0v1"/></svg></div>
+  <h3>Welcome to iSpani</h3>
+  <p class="as-sub">Log in or create an account to build your profile, get matched, and hire talent.</p>
+  <button class="btn btn-primary btn-block btn-lg" onclick="toggleAuthSlider(false);openLogin()">Log in</button>
+  <button class="btn btn-outline btn-block btn-lg" onclick="toggleAuthSlider(false);openSignup()">Sign up</button>
+</div>
+
+
+<main class="smartmatch-page">
+  <div class="catalog-head">
+    <button class="back-btn" onclick="location.href='index.html'" aria-label="Back to home">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      Back
+    </button>
+    <div class="ch-txt"><div class="eyebrow">Smart Match</div><h3>Find your match</h3></div>
+  </div>
+<!-- SMART MATCH -->
+<section id="match" class="match-dark">
+  <div class="wrap">
+    <div class="wizard">
+      <div class="wiz-grid">
+        <div class="wiz-left">
+          <h2>Smart Match</h2>
+          <div class="wiz-inner">
+
+            <!-- Visual step list (icon + label, no paragraphs) -->
+            <div id="wizSteps" class="wvs">
+              <div class="wstep" data-s="1">
+                <div class="wvs-row">
+                  <div class="wvs-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></div>
+                  <div class="wvs-txt"><strong>Category</strong><em>Pick your field</em></div>
+                </div>
+                <div class="wvs-line"></div>
+              </div>
+              <div class="wstep" data-s="2">
+                <div class="wvs-row">
+                  <div class="wvs-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2 6.5H21l-5.6 4.1 2.1 6.5L12 15l-5.5 4.1 2.1-6.5L3 8.5h7z"/></svg></div>
+                  <div class="wvs-txt"><strong>Skills</strong><em>Must-haves</em></div>
+                </div>
+                <div class="wvs-line"></div>
+              </div>
+              <div class="wstep" data-s="3">
+                <div class="wvs-row">
+                  <div class="wvs-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div>
+                  <div class="wvs-txt"><strong>Budget</strong><em>Rate &amp; timeline</em></div>
+                </div>
+                <div class="wvs-line"></div>
+              </div>
+              <div class="wstep" data-s="4">
+                <div class="wvs-row">
+                  <div class="wvs-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div>
+                  <div class="wvs-txt"><strong>Matches</strong><em>Ranked for you</em></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Animated phone figure -->
+            <div class="wiz-phone-fig" aria-hidden="true">
+              <svg viewBox="0 0 108 210" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <clipPath id="phone-screen-clip"><rect x="35" y="68" width="38" height="74" rx="5"/></clipPath>
+                </defs>
+
+                <!-- Whole figure bobs gently -->
+                <g class="pfig">
+
+                  <!-- Legs -->
+                  <rect x="40" y="118" width="12" height="48" rx="6" fill="#8fa9f3" opacity=".55"/>
+                  <rect x="56" y="118" width="12" height="48" rx="6" fill="#8fa9f3" opacity=".55"/>
+                  <!-- Feet -->
+                  <ellipse cx="46" cy="168" rx="12" ry="6" fill="#6988dc" opacity=".45"/>
+                  <ellipse cx="62" cy="168" rx="12" ry="6" fill="#6988dc" opacity=".45"/>
+
+                  <!-- Torso (visible at sides of phone) -->
+                  <rect x="22" y="64" width="17" height="54" rx="9" fill="#8fa9f3" opacity=".6"/>
+                  <rect x="69" y="64" width="17" height="54" rx="9" fill="#8fa9f3" opacity=".6"/>
+
+                  <!-- Arms curving down to hold phone -->
+                  <path d="M24,76 C16,88 16,108 24,118" stroke="#8fa9f3" stroke-width="11" stroke-linecap="round" fill="none" opacity=".6"/>
+                  <path d="M84,76 C92,88 92,108 84,118" stroke="#8fa9f3" stroke-width="11" stroke-linecap="round" fill="none" opacity=".6"/>
+                  <!-- Hands -->
+                  <circle cx="24" cy="120" r="7.5" fill="#8fa9f3" opacity=".6"/>
+                  <circle cx="84" cy="120" r="7.5" fill="#8fa9f3" opacity=".6"/>
+
+                  <!-- Head -->
+                  <circle cx="54" cy="42" r="19" fill="#c5d5ee"/>
+                  <!-- Face: eyes -->
+                  <circle cx="47" cy="40" r="2.8" fill="rgba(45,91,224,.5)"/>
+                  <circle cx="61" cy="40" r="2.8" fill="rgba(45,91,224,.5)"/>
+                  <!-- Smile -->
+                  <path d="M47 49 Q54 54 61 49" stroke="rgba(45,91,224,.45)" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+                  <!-- Hair -->
+                  <path d="M36,38 Q35,22 54,20 Q73,22 72,38" fill="#8fa9f3" opacity=".55"/>
+
+                  <!-- Phone device (front, overlaps body) -->
+                  <rect x="28" y="60" width="52" height="90" rx="11" fill="#2D5BE0"/>
+                  <!-- Screen -->
+                  <rect x="35" y="68" width="38" height="74" rx="5" fill="#edf2fe"/>
+                  <!-- Notch -->
+                  <rect x="46" y="68" width="16" height="5.5" rx="2.8" fill="rgba(45,91,224,.35)"/>
+
+                  <!-- Screen UI (clipped) -->
+                  <g clip-path="url(#phone-screen-clip)">
+                    <!-- Search bar -->
+                    <rect x="38" y="77" width="32" height="8" rx="4" fill="rgba(45,91,224,.18)"/>
+                    <circle cx="43" cy="81" r="2.5" fill="rgba(45,91,224,.4)"/>
+                    <rect x="48" y="79.5" width="18" height="3" rx="1.5" fill="rgba(45,91,224,.3)"/>
+                    <!-- Card 1 (active / highlighted) -->
+                    <rect x="38" y="89" width="32" height="20" rx="4" fill="rgba(45,91,224,.12)"/>
+                    <rect class="pscreen-active" x="38" y="89" width="32" height="20" rx="4" fill="rgba(45,91,224,.22)"/>
+                    <circle cx="45" cy="99" r="6" fill="rgba(45,91,224,.38)"/>
+                    <rect x="53" y="94.5" width="14" height="3.5" rx="1.8" fill="rgba(45,91,224,.5)"/>
+                    <rect x="53" y="100" width="10" height="2.8" rx="1.4" fill="rgba(45,91,224,.3)"/>
+                    <!-- Match score badge on card 1 -->
+                    <rect x="61" y="90" width="9" height="9" rx="4.5" fill="#2D5BE0"/>
+                    <text x="65.5" y="97.5" text-anchor="middle" font-family="Plus Jakarta Sans,sans-serif" font-size="5.5" font-weight="800" fill="#fff">96</text>
+                    <!-- Card 2 -->
+                    <rect x="38" y="113" width="32" height="20" rx="4" fill="rgba(45,91,224,.09)"/>
+                    <circle cx="45" cy="123" r="6" fill="rgba(45,91,224,.22)"/>
+                    <rect x="53" y="118.5" width="12" height="3.5" rx="1.8" fill="rgba(45,91,224,.3)"/>
+                    <rect x="53" y="124" width="8" height="2.8" rx="1.4" fill="rgba(45,91,224,.2)"/>
+                    <!-- Home bar -->
+                    <rect x="43" y="136" width="22" height="3" rx="1.5" fill="rgba(45,91,224,.3)"/>
+                  </g>
+
+                  <!-- Status dot on phone -->
+                  <circle class="pdot" cx="85" cy="66" r="5" fill="#2D5BE0" stroke="#fff" stroke-width="2"/>
+
+                  <!-- Notification A: floats up from phone top -->
+                  <g class="pnotif-a">
+                    <rect x="55" y="44" width="40" height="16" rx="8" fill="#fff" opacity=".95"/>
+                    <text x="75" y="55.5" text-anchor="middle" font-family="Plus Jakarta Sans,sans-serif" font-size="7" font-weight="700" fill="#2D5BE0">✦ Match!</text>
+                  </g>
+
+                  <!-- Notification B: offset timing, other side -->
+                  <g class="pnotif-b">
+                    <rect x="12" y="50" width="34" height="16" rx="8" fill="#fff" opacity=".9"/>
+                    <text x="29" y="61.5" text-anchor="middle" font-family="Plus Jakarta Sans,sans-serif" font-size="7" font-weight="700" fill="#2D5BE0">96% fit</text>
+                  </g>
+
+                </g><!-- end .pfig -->
+              </svg>
+            </div>
+
+          </div><!-- end .wiz-inner -->
+          <button class="wiz-open-btn" onclick="location.href='smart-match.html'">Start Smart Match →</button>
+        </div>
+        <div class="wiz-right" id="wizRight">
+          <div class="wiz-panel show" data-panel="1">
+            <h4>What kind of work do you need?</h4>
+            <p class="hint">Choose the category that fits best.</p>
+            <div class="opt-grid" id="wizCats"></div>
+            <div class="wiz-nav"><span class="step-tag">Step 1 of 3</span><button class="btn btn-primary btn-sm" id="next1" disabled onclick="wizGo(2)">Continue →</button></div>
+          </div>
+          <div class="wiz-panel" data-panel="2">
+            <h4>Which skills are must-haves?</h4>
+            <p class="hint">Pick a few — matches rank on how many they have.</p>
+            <div class="skill-pick" id="wizSkills"></div>
+            <div class="wiz-nav"><button class="btn btn-ghost btn-sm" onclick="wizGo(1)">← Back</button><button class="btn btn-primary btn-sm" id="next2" disabled onclick="wizGo(3)">Continue →</button></div>
+          </div>
+          <div class="wiz-panel" data-panel="3">
+            <h4>Budget and project length</h4>
+            <p class="hint">We'll favour talent whose rate fits your budget.</p>
+            <span class="field-label">Maximum hourly rate</span>
+            <div class="budget-row" id="wizBudget">
+              <div class="seg">
+                <button data-b="200" onclick="pickBudget(this,200)">≤ R200</button>
+                <button data-b="300" class="sel" onclick="pickBudget(this,300)">≤ R300</button>
+                <button data-b="400" onclick="pickBudget(this,400)">≤ R400</button>
+                <button data-b="9999" onclick="pickBudget(this,9999)">Any</button>
+              </div>
+            </div>
+            <span class="field-label">Project length</span>
+            <div class="seg" id="wizLen"><button data-l="short" class="sel" onclick="pickLen(this,'short')">Short / once-off</button><button data-l="long" onclick="pickLen(this,'long')">Ongoing</button></div>
+            <div class="wiz-nav"><button class="btn btn-ghost btn-sm" onclick="wizGo(2)">← Back</button><button class="btn btn-primary btn-sm" onclick="runMatch()">Find my matches →</button></div>
+          </div>
+          <div class="wiz-panel" data-panel="4" id="wizResults"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- Fixed bottom action bar (mobile) -->
+<div class="mobile-cta">
+  <button class="btn btn-primary btn-lg" onclick="openJob()">Post a job</button>
+  <button class="btn btn-outline btn-lg" onclick="openCatalog()">Find talent</button>
+</div>
+
+
+<!-- USER PROFILE OVERLAY -->
+<div class="profile-overlay" id="profileOverlay" role="dialog" aria-label="Your profile">
+  <div class="pf-head">
+    <button class="back-btn" onclick="closeProfilePage()" aria-label="Back to home">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      Back
+    </button>
+    <div class="ch-txt"><div class="eyebrow">Your profile</div><h3>Profile</h3></div>
+  </div>
+  <div class="pf-cover"></div>
+  <div class="pf-wrap" id="profileMount"></div>
+</div>
+
+<!-- SMART MATCH PAGE OVERLAY (mobile) -->
+<div class="wizpage-overlay" id="wizPageOverlay" role="dialog" aria-label="Smart Match" onclick="if(event.target===this)closeWizPage()">
+  <div class="wizpage-sheet">
+    <div class="wizpage-head">
+      <h3>Smart Match</h3>
+      <button class="close-x" onclick="closeWizPage()" aria-label="Close">×</button>
+    </div>
+    <div class="wizpage-mount" id="wizPageMount"></div>
+  </div>
+</div>
+
+<!-- TALENT CATALOG OVERLAY -->
+<div class="catalog-overlay" id="catalogOverlay" role="dialog" aria-label="Talent catalog">
+  <div class="catalog-head">
+    <button class="back-btn" onclick="closeCatalog()" aria-label="Back to home">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      Back
+    </button>
+    <div class="ch-txt">
+      <div class="eyebrow">Talent catalog</div>
+      <h3>All verified ICT talent</h3>
+    </div>
+  </div>
+  <div class="catalog-body">
+    <div class="wrap">
+      <div class="browse-grid">
+        <aside class="filters" aria-label="Filters">
+          <div class="search-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg><input type="text" id="searchInput" placeholder="Search name or skill…" oninput="renderTalent()" aria-label="Search talent"></div>
+          <div class="fgroup"><span class="flabel">Field</span><div id="filterCats"></div></div>
+          <div class="fgroup"><span class="flabel">Max rate — <span class="range-val" id="rateLabel">R400/hr</span></span><input type="range" id="rateRange" min="100" max="400" step="50" value="400" oninput="renderTalent()"></div>
+          <div class="fgroup"><span class="flabel">Status</span><label class="check"><input type="checkbox" id="fStudent" checked onchange="renderTalent()"> Current students</label><label class="check"><input type="checkbox" id="fGrad" checked onchange="renderTalent()"> Graduates</label></div>
+          <button class="btn btn-ghost btn-sm btn-block" style="margin-top:14px;" onclick="resetFilters()">Reset filters</button>
+        </aside>
+        <div>
+          <div class="browse-top"><span class="count" id="talentCount"></span><select id="sortSel" onchange="renderTalent()" aria-label="Sort talent"><option value="rating">Sort: Top rated</option><option value="low">Sort: Rate (low → high)</option><option value="high">Sort: Rate (high → low)</option></select></div>
+          <div class="talent-grid" id="talentGrid"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="overlay" id="overlay" onclick="if(event.target===this)closeModal()"><div class="modal" id="modal" role="dialog" aria-modal="true"></div></div>
+<div class="toast-wrap" id="toastWrap"></div>
+
+
+<script src="js/app.js"></script>
+<script type="module" src="js/firebase-config.js"></script>
+</body>
+</html>

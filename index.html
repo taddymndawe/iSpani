@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<meta name="theme-color" content="#2B57DC" />
+<title>iSpani — South Africa's ICT talent marketplace</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;450;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="nav" id="siteNav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="index.html" aria-label="iSpani home"><span class="dot"><span class="dot-bg"></span><span class="dot-txt">iS</span></span><span class="brand-name">iSpani</span></a>
+    <nav class="nav-links" aria-label="Primary">
+      <a class="link" href="index.html#categories">Browse skills</a>
+      <a class="link" href="smart-match.html">Smart match</a>
+      <a class="link" href="catalog.html">Find talent</a>
+      <a class="link" href="index.html#how">How it works</a>
+    </nav>
+    <div class="nav-cta">
+      <button class="btn btn-outline btn-sm" data-auth-guest onclick="openLogin()">Log in</button>
+      <button class="btn btn-primary btn-sm" data-auth-guest onclick="openSignup()">Join free</button>
+      <button class="hamburger" aria-label="Open menu" onclick="toggleMnav(true)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+      <button class="nav-prof" id="navProf" aria-label="Profile" onclick="profileBtn()"></button>
+    </div>
+  </div>
+</header>
+
+<div class="mnav" id="mnav">
+  <button class="mclose" aria-label="Close menu" onclick="toggleMnav(false)">×</button>
+  <a href="index.html#categories" onclick="toggleMnav(false)">Browse skills</a>
+  <a href="smart-match.html" onclick="toggleMnav(false)">Smart match</a>
+  <a href="catalog.html" onclick="toggleMnav(false)">Find talent</a>
+  <a href="index.html#how" onclick="toggleMnav(false)">How it works</a>
+  <a href="profile.html" data-auth-user style="display:none" onclick="toggleMnav(false)">My profile</a>
+  <button class="btn btn-outline btn-block" data-auth-guest onclick="toggleMnav(false);openLogin()">Log in</button>
+  <button class="btn btn-primary btn-block" data-auth-guest onclick="toggleMnav(false);openSignup()">Join free</button>
+  <button class="btn btn-outline btn-block" data-auth-user style="display:none" onclick="toggleMnav(false);signOut()">Sign out</button>
+</div>
+
+<!-- AUTH SLIDER (for profile button when logged out) -->
+<div class="auth-slider" id="authSlider">
+  <button class="as-close" aria-label="Close" onclick="toggleAuthSlider(false)">×</button>
+  <div class="as-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a7 7 0 0114 0v1"/></svg></div>
+  <h3>Welcome to iSpani</h3>
+  <p class="as-sub">Log in or create an account to build your profile, get matched, and hire talent.</p>
+  <button class="btn btn-primary btn-block btn-lg" onclick="toggleAuthSlider(false);openLogin()">Log in</button>
+  <button class="btn btn-outline btn-block btn-lg" onclick="toggleAuthSlider(false);openSignup()">Sign up</button>
+</div>
+
+
+<span id="top"></span>
+<!-- HERO -->
+<section class="hero">
+  <!-- Animated gradient blobs (GPU-composited, transform-only) -->
+  <div class="hero-blob hero-blob-1" aria-hidden="true"></div>
+  <div class="hero-blob hero-blob-2" aria-hidden="true"></div>
+  <div class="hero-blob hero-blob-3" aria-hidden="true"></div>
+  <div class="hero-blob hero-blob-4" aria-hidden="true"></div>
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">ICT talent marketplace · South Africa</span>
+      <h1>Hire skilled<br><span class="hl">ICT students.</span></h1>
+      <p class="lead">Verified university talent,<br class="lead-br">matched to your project in minutes.</p>
+      <div class="hero-cta">
+        <button class="btn btn-white btn-lg" onclick="location.href='smart-match.html'">Find talent →</button>
+        <button class="btn btn-light btn-lg" onclick="location.href='catalog.html'">Offer my skills</button>
+      </div>
+      <div class="hero-stats">
+        <div><div class="hs-n">6</div><div class="hs-l">ICT fields</div></div>
+        <div><div class="hs-n">4.8★</div><div class="hs-l">Avg rating</div></div>
+        <div><div class="hs-n">10%</div><div class="hs-l">Flat fee</div></div>
+        <div><div class="hs-n">100%</div><div class="hs-l">SA-verified</div></div>
+      </div>
+    </div>
+    <div class="hero-vis" aria-label="Illustration of an ICT student at a laptop with floating skill badges">
+      <!-- Illustration -->
+      <div class="hero-illo">
+        <svg viewBox="0 0 480 240" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient id="bg-glow" cx="50%" cy="50%" r="55%">
+              <stop offset="0%" stop-color="rgba(255,255,255,.07)"/>
+              <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+            </radialGradient>
+            <radialGradient id="screen-glow" cx="50%" cy="30%" r="70%">
+              <stop offset="0%" stop-color="rgba(100,150,255,.18)"/>
+              <stop offset="100%" stop-color="rgba(0,0,30,.0)"/>
+            </radialGradient>
+            <clipPath id="screen-clip">
+              <rect x="122" y="56" width="190" height="112" rx="4"/>
+            </clipPath>
+          </defs>
+
+          <!-- Background ambient glow -->
+          <ellipse cx="240" cy="140" rx="200" ry="100" fill="url(#bg-glow)"/>
+
+          <!-- ── Person ── -->
+          <!-- Head -->
+          <circle cx="348" cy="74" r="26" fill="rgba(255,255,255,.86)"/>
+          <!-- Neck -->
+          <rect x="340" y="96" width="16" height="14" rx="6" fill="rgba(255,255,255,.86)"/>
+          <!-- Shoulders / body (soft silhouette, sits behind desk) -->
+          <path d="M298 230 C298 160 398 160 398 230" fill="rgba(255,255,255,.15)"/>
+          <!-- Arm reaching to keyboard (right side) -->
+          <path d="M298 170 Q268 185 248 196" stroke="rgba(255,255,255,.22)" stroke-width="18" stroke-linecap="round" fill="none"/>
+
+          <!-- ── Desk ── -->
+          <rect x="30" y="196" width="420" height="10" rx="5" fill="rgba(255,255,255,.16)"/>
+
+          <!-- ── Laptop base / keyboard ── -->
+          <rect x="100" y="168" width="240" height="30" rx="7" fill="rgba(255,255,255,.20)"/>
+          <!-- Keyboard rows -->
+          <rect x="118" y="176" width="204" height="3" rx="1.5" fill="rgba(255,255,255,.30)"/>
+          <rect x="118" y="183" width="204" height="3" rx="1.5" fill="rgba(255,255,255,.22)"/>
+          <rect x="118" y="190" width="160" height="3" rx="1.5" fill="rgba(255,255,255,.20)"/>
+          <!-- Trackpad -->
+          <rect x="192" y="190" width="56" height="5" rx="2.5" fill="rgba(255,255,255,.17)"/>
+          <!-- Hinge shadow -->
+          <rect x="100" y="166" width="240" height="3" rx="1.5" fill="rgba(0,0,30,.18)"/>
+
+          <!-- ── Laptop screen (lid) ── -->
+          <rect x="112" y="42" width="216" height="130" rx="10" fill="rgba(255,255,255,.13)" stroke="rgba(255,255,255,.25)" stroke-width="1.5"/>
+          <!-- Dark screen bezel -->
+          <rect x="122" y="56" width="196" height="112" rx="5" fill="rgba(6,12,46,.92)"/>
+          <rect x="122" y="56" width="196" height="112" rx="5" fill="url(#screen-glow)"/>
+
+          <!-- Window chrome -->
+          <rect x="122" y="56" width="196" height="18" rx="5" fill="rgba(255,255,255,.06)"/>
+          <circle cx="135" cy="65" r="4" fill="rgba(255,100,100,.65)"/>
+          <circle cx="148" cy="65" r="4" fill="rgba(255,190,60,.65)"/>
+          <circle cx="161" cy="65" r="4" fill="rgba(80,210,80,.65)"/>
+          <!-- File name -->
+          <rect x="195" y="61" width="70" height="8" rx="4" fill="rgba(255,255,255,.08)"/>
+
+          <!-- Code lines (inside clipped area) -->
+          <g clip-path="url(#screen-clip)">
+            <!-- Line 1 -->
+            <rect x="132" y="84" width="52" height="5" rx="2.5" fill="rgba(130,185,255,.95)"/>
+            <rect x="190" y="84" width="28" height="5" rx="2.5" fill="rgba(255,255,255,.55)"/>
+            <!-- Line 2 indent -->
+            <rect x="144" y="94" width="38" height="5" rx="2.5" fill="rgba(140,255,190,.80)"/>
+            <rect x="188" y="94" width="60" height="5" rx="2.5" fill="rgba(255,200,110,.70)"/>
+            <!-- Line 3 indent -->
+            <rect x="144" y="104" width="80" height="5" rx="2.5" fill="rgba(255,255,255,.60)"/>
+            <!-- Line 4 indent -->
+            <rect x="144" y="114" width="52" height="5" rx="2.5" fill="rgba(130,185,255,.85)"/>
+            <rect x="202" y="114" width="36" height="5" rx="2.5" fill="rgba(255,255,255,.45)"/>
+            <!-- Line 5 -->
+            <rect x="132" y="124" width="70" height="5" rx="2.5" fill="rgba(255,255,255,.45)"/>
+            <!-- Line 6 indent -->
+            <rect x="144" y="134" width="90" height="5" rx="2.5" fill="rgba(140,255,190,.65)"/>
+            <!-- Line 7 -->
+            <rect x="132" y="144" width="44" height="5" rx="2.5" fill="rgba(130,185,255,.90)"/>
+            <!-- Cursor -->
+            <rect x="180" y="144" width="2.5" height="14" rx="1.2" fill="rgba(255,255,255,.92)">
+              <animate attributeName="opacity" values="1;0;1" dur="1.1s" repeatCount="indefinite"/>
+            </rect>
+          </g>
+
+          <!-- ── Floating skill badges ── -->
+          <!-- React (top-left) -->
+          <rect x="10" y="58" width="68" height="26" rx="13" fill="rgba(255,255,255,.13)" stroke="rgba(255,255,255,.28)" stroke-width="1.2"/>
+          <text x="44" y="75.5" text-anchor="middle" font-family="Plus Jakarta Sans,Inter,sans-serif" font-size="10.5" font-weight="700" fill="rgba(255,255,255,.90)">React</text>
+          <!-- connector dots -->
+          <circle cx="80" cy="71" r="2.2" fill="rgba(255,255,255,.32)"/>
+          <circle cx="88" cy="71" r="2.2" fill="rgba(255,255,255,.22)"/>
+          <circle cx="97" cy="71" r="2.2" fill="rgba(255,255,255,.14)"/>
+
+          <!-- Python (top-right) -->
+          <rect x="402" y="50" width="68" height="26" rx="13" fill="rgba(255,255,255,.13)" stroke="rgba(255,255,255,.28)" stroke-width="1.2"/>
+          <text x="436" y="67.5" text-anchor="middle" font-family="Plus Jakarta Sans,Inter,sans-serif" font-size="10.5" font-weight="700" fill="rgba(255,255,255,.90)">Python</text>
+          <!-- connector dots -->
+          <circle cx="398" cy="63" r="2.2" fill="rgba(255,255,255,.32)"/>
+          <circle cx="390" cy="63" r="2.2" fill="rgba(255,255,255,.22)"/>
+          <circle cx="382" cy="63" r="2.2" fill="rgba(255,255,255,.14)"/>
+
+          <!-- Node.js (left-mid) -->
+          <rect x="6" y="110" width="76" height="26" rx="13" fill="rgba(255,255,255,.13)" stroke="rgba(255,255,255,.28)" stroke-width="1.2"/>
+          <text x="44" y="127.5" text-anchor="middle" font-family="Plus Jakarta Sans,Inter,sans-serif" font-size="10.5" font-weight="700" fill="rgba(255,255,255,.90)">Node.js</text>
+          <circle cx="84" cy="123" r="2.2" fill="rgba(255,255,255,.32)"/>
+          <circle cx="92" cy="121" r="2.2" fill="rgba(255,255,255,.20)"/>
+
+          <!-- SQL (right-mid) -->
+          <rect x="408" y="104" width="62" height="26" rx="13" fill="rgba(255,255,255,.13)" stroke="rgba(255,255,255,.28)" stroke-width="1.2"/>
+          <text x="439" y="121.5" text-anchor="middle" font-family="Plus Jakarta Sans,Inter,sans-serif" font-size="10.5" font-weight="700" fill="rgba(255,255,255,.90)">SQL</text>
+          <circle cx="404" cy="117" r="2.2" fill="rgba(255,255,255,.32)"/>
+          <circle cx="396" cy="117" r="2.2" fill="rgba(255,255,255,.20)"/>
+
+          <!-- Azure (bottom-left) -->
+          <rect x="14" y="160" width="66" height="26" rx="13" fill="rgba(255,255,255,.10)" stroke="rgba(255,255,255,.22)" stroke-width="1.2"/>
+          <text x="47" y="177.5" text-anchor="middle" font-family="Plus Jakarta Sans,Inter,sans-serif" font-size="10.5" font-weight="600" fill="rgba(255,255,255,.76)">Azure</text>
+
+          <!-- Figma (bottom-right) -->
+          <rect x="400" y="156" width="68" height="26" rx="13" fill="rgba(255,255,255,.10)" stroke="rgba(255,255,255,.22)" stroke-width="1.2"/>
+          <text x="434" y="173.5" text-anchor="middle" font-family="Plus Jakarta Sans,Inter,sans-serif" font-size="10.5" font-weight="600" fill="rgba(255,255,255,.76)">Figma</text>
+
+          <!-- Small sparkle accents -->
+          <circle cx="58" cy="34" r="3" fill="rgba(255,255,255,.22)"/>
+          <circle cx="420" cy="170" r="2.5" fill="rgba(255,255,255,.18)"/>
+          <circle cx="20" cy="200" r="2" fill="rgba(255,255,255,.16)"/>
+          <circle cx="460" cy="30" r="2" fill="rgba(255,255,255,.18)"/>
+        </svg>
+      </div>
+
+      <!-- Talent card (sits flush below the illustration) -->
+      <div class="vcard front">
+        <div class="row">
+          <div class="avatar">LM</div>
+          <div><div class="name">Lerato Mokoena</div><div class="sub">Final-year BSc CS · Wits</div></div>
+          <div class="ring"><svg width="54" height="54"><circle class="track" cx="27" cy="27" r="22" stroke-width="6" fill="none"/><circle class="prog" cx="27" cy="27" r="22" stroke-width="6" fill="none" stroke-linecap="round" stroke-dasharray="138" stroke-dashoffset="6"/></svg><span class="val">96%</span></div>
+        </div>
+        <div class="chips"><span class="chip match">React</span><span class="chip match">Node.js</span><span class="chip">PostgreSQL</span></div>
+        <div class="barline"><i></i></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VISUAL FLOW -->
+<section id="how" class="flow-sec">
+  <div class="wrap">
+    <div class="flow">
+      <div class="flow-step">
+        <div class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h4"/></svg></div>
+        <h4>Post a job</h4><p>Tell us what you need</p>
+      </div>
+      <div class="flow-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" style="overflow:visible"><path class="farr" pathLength="1" d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+      <div class="flow-step">
+        <div class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 3l2.2 5.6L20 10l-5.8 1.4L12 17l-2.2-5.6L4 10l5.8-1.4z"/></svg></div>
+        <h4>Get matched</h4><p>Ranked talent, instantly</p>
+      </div>
+      <div class="flow-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" style="overflow:visible"><path class="farr" pathLength="1" d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+      <div class="flow-step">
+        <div class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6z"/><path d="M9 12l2 2 4-4"/></svg></div>
+        <h4>Hire safely</h4><p>Escrow-protected pay</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CATEGORIES -->
+<section id="categories" class="bg-grey">
+  <div class="wrap">
+    <div class="sec-head"><span class="eyebrow">Explore by skill</span><h2>Browse by ICT field</h2></div>
+    <div class="cat-grid" id="catGrid"></div>
+  </div>
+</section>
+
+<!-- SMART MATCH -->
+<section id="match" class="match-dark">
+  <div class="wrap">
+    <div class="wizard">
+      <div class="wiz-grid">
+        <div class="wiz-left">
+          <h2>Smart Match</h2>
+          <div class="wiz-inner">
+
+            <!-- Visual step list (icon + label, no paragraphs) -->
+            <div id="wizSteps" class="wvs">
+              <div class="wstep" data-s="1">
+                <div class="wvs-row">
+                  <div class="wvs-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></div>
+                  <div class="wvs-txt"><strong>Category</strong><em>Pick your field</em></div>
+                </div>
+                <div class="wvs-line"></div>
+              </div>
+              <div class="wstep" data-s="2">
+                <div class="wvs-row">
+                  <div class="wvs-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2 6.5H21l-5.6 4.1 2.1 6.5L12 15l-5.5 4.1 2.1-6.5L3 8.5h7z"/></svg></div>
+                  <div class="wvs-txt"><strong>Skills</strong><em>Must-haves</em></div>
+                </div>
+                <div class="wvs-line"></div>
+              </div>
+              <div class="wstep" data-s="3">
+                <div class="wvs-row">
+                  <div class="wvs-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div>
+                  <div class="wvs-txt"><strong>Budget</strong><em>Rate &amp; timeline</em></div>
+                </div>
+                <div class="wvs-line"></div>
+              </div>
+              <div class="wstep" data-s="4">
+                <div class="wvs-row">
+                  <div class="wvs-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div>
+                  <div class="wvs-txt"><strong>Matches</strong><em>Ranked for you</em></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Animated phone figure -->
+            <div class="wiz-phone-fig" aria-hidden="true">
+              <svg viewBox="0 0 108 210" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <clipPath id="phone-screen-clip"><rect x="35" y="68" width="38" height="74" rx="5"/></clipPath>
+                </defs>
+
+                <!-- Whole figure bobs gently -->
+                <g class="pfig">
+
+                  <!-- Legs -->
+                  <rect x="40" y="118" width="12" height="48" rx="6" fill="#8fa9f3" opacity=".55"/>
+                  <rect x="56" y="118" width="12" height="48" rx="6" fill="#8fa9f3" opacity=".55"/>
+                  <!-- Feet -->
+                  <ellipse cx="46" cy="168" rx="12" ry="6" fill="#6988dc" opacity=".45"/>
+                  <ellipse cx="62" cy="168" rx="12" ry="6" fill="#6988dc" opacity=".45"/>
+
+                  <!-- Torso (visible at sides of phone) -->
+                  <rect x="22" y="64" width="17" height="54" rx="9" fill="#8fa9f3" opacity=".6"/>
+                  <rect x="69" y="64" width="17" height="54" rx="9" fill="#8fa9f3" opacity=".6"/>
+
+                  <!-- Arms curving down to hold phone -->
+                  <path d="M24,76 C16,88 16,108 24,118" stroke="#8fa9f3" stroke-width="11" stroke-linecap="round" fill="none" opacity=".6"/>
+                  <path d="M84,76 C92,88 92,108 84,118" stroke="#8fa9f3" stroke-width="11" stroke-linecap="round" fill="none" opacity=".6"/>
+                  <!-- Hands -->
+                  <circle cx="24" cy="120" r="7.5" fill="#8fa9f3" opacity=".6"/>
+                  <circle cx="84" cy="120" r="7.5" fill="#8fa9f3" opacity=".6"/>
+
+                  <!-- Head -->
+                  <circle cx="54" cy="42" r="19" fill="#c5d5ee"/>
+                  <!-- Face: eyes -->
+                  <circle cx="47" cy="40" r="2.8" fill="rgba(45,91,224,.5)"/>
+                  <circle cx="61" cy="40" r="2.8" fill="rgba(45,91,224,.5)"/>
+                  <!-- Smile -->
+                  <path d="M47 49 Q54 54 61 49" stroke="rgba(45,91,224,.45)" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+                  <!-- Hair -->
+                  <path d="M36,38 Q35,22 54,20 Q73,22 72,38" fill="#8fa9f3" opacity=".55"/>
+
+                  <!-- Phone device (front, overlaps body) -->
+                  <rect x="28" y="60" width="52" height="90" rx="11" fill="#2D5BE0"/>
+                  <!-- Screen -->
+                  <rect x="35" y="68" width="38" height="74" rx="5" fill="#edf2fe"/>
+                  <!-- Notch -->
+                  <rect x="46" y="68" width="16" height="5.5" rx="2.8" fill="rgba(45,91,224,.35)"/>
+
+                  <!-- Screen UI (clipped) -->
+                  <g clip-path="url(#phone-screen-clip)">
+                    <!-- Search bar -->
+                    <rect x="38" y="77" width="32" height="8" rx="4" fill="rgba(45,91,224,.18)"/>
+                    <circle cx="43" cy="81" r="2.5" fill="rgba(45,91,224,.4)"/>
+                    <rect x="48" y="79.5" width="18" height="3" rx="1.5" fill="rgba(45,91,224,.3)"/>
+                    <!-- Card 1 (active / highlighted) -->
+                    <rect x="38" y="89" width="32" height="20" rx="4" fill="rgba(45,91,224,.12)"/>
+                    <rect class="pscreen-active" x="38" y="89" width="32" height="20" rx="4" fill="rgba(45,91,224,.22)"/>
+                    <circle cx="45" cy="99" r="6" fill="rgba(45,91,224,.38)"/>
+                    <rect x="53" y="94.5" width="14" height="3.5" rx="1.8" fill="rgba(45,91,224,.5)"/>
+                    <rect x="53" y="100" width="10" height="2.8" rx="1.4" fill="rgba(45,91,224,.3)"/>
+                    <!-- Match score badge on card 1 -->
+                    <rect x="61" y="90" width="9" height="9" rx="4.5" fill="#2D5BE0"/>
+                    <text x="65.5" y="97.5" text-anchor="middle" font-family="Plus Jakarta Sans,sans-serif" font-size="5.5" font-weight="800" fill="#fff">96</text>
+                    <!-- Card 2 -->
+                    <rect x="38" y="113" width="32" height="20" rx="4" fill="rgba(45,91,224,.09)"/>
+                    <circle cx="45" cy="123" r="6" fill="rgba(45,91,224,.22)"/>
+                    <rect x="53" y="118.5" width="12" height="3.5" rx="1.8" fill="rgba(45,91,224,.3)"/>
+                    <rect x="53" y="124" width="8" height="2.8" rx="1.4" fill="rgba(45,91,224,.2)"/>
+                    <!-- Home bar -->
+                    <rect x="43" y="136" width="22" height="3" rx="1.5" fill="rgba(45,91,224,.3)"/>
+                  </g>
+
+                  <!-- Status dot on phone -->
+                  <circle class="pdot" cx="85" cy="66" r="5" fill="#2D5BE0" stroke="#fff" stroke-width="2"/>
+
+                  <!-- Notification A: floats up from phone top -->
+                  <g class="pnotif-a">
+                    <rect x="55" y="44" width="40" height="16" rx="8" fill="#fff" opacity=".95"/>
+                    <text x="75" y="55.5" text-anchor="middle" font-family="Plus Jakarta Sans,sans-serif" font-size="7" font-weight="700" fill="#2D5BE0">✦ Match!</text>
+                  </g>
+
+                  <!-- Notification B: offset timing, other side -->
+                  <g class="pnotif-b">
+                    <rect x="12" y="50" width="34" height="16" rx="8" fill="#fff" opacity=".9"/>
+                    <text x="29" y="61.5" text-anchor="middle" font-family="Plus Jakarta Sans,sans-serif" font-size="7" font-weight="700" fill="#2D5BE0">96% fit</text>
+                  </g>
+
+                </g><!-- end .pfig -->
+              </svg>
+            </div>
+
+          </div><!-- end .wiz-inner -->
+          <button class="wiz-open-btn" onclick="location.href='smart-match.html'">Start Smart Match →</button>
+        </div>
+        <div class="wiz-right" id="wizRight">
+          <div class="wiz-panel show" data-panel="1">
+            <h4>What kind of work do you need?</h4>
+            <p class="hint">Choose the category that fits best.</p>
+            <div class="opt-grid" id="wizCats"></div>
+            <div class="wiz-nav"><span class="step-tag">Step 1 of 3</span><button class="btn btn-primary btn-sm" id="next1" disabled onclick="wizGo(2)">Continue →</button></div>
+          </div>
+          <div class="wiz-panel" data-panel="2">
+            <h4>Which skills are must-haves?</h4>
+            <p class="hint">Pick a few — matches rank on how many they have.</p>
+            <div class="skill-pick" id="wizSkills"></div>
+            <div class="wiz-nav"><button class="btn btn-ghost btn-sm" onclick="wizGo(1)">← Back</button><button class="btn btn-primary btn-sm" id="next2" disabled onclick="wizGo(3)">Continue →</button></div>
+          </div>
+          <div class="wiz-panel" data-panel="3">
+            <h4>Budget and project length</h4>
+            <p class="hint">We'll favour talent whose rate fits your budget.</p>
+            <span class="field-label">Maximum hourly rate</span>
+            <div class="budget-row" id="wizBudget">
+              <div class="seg">
+                <button data-b="200" onclick="pickBudget(this,200)">≤ R200</button>
+                <button data-b="300" class="sel" onclick="pickBudget(this,300)">≤ R300</button>
+                <button data-b="400" onclick="pickBudget(this,400)">≤ R400</button>
+                <button data-b="9999" onclick="pickBudget(this,9999)">Any</button>
+              </div>
+            </div>
+            <span class="field-label">Project length</span>
+            <div class="seg" id="wizLen"><button data-l="short" class="sel" onclick="pickLen(this,'short')">Short / once-off</button><button data-l="long" onclick="pickLen(this,'long')">Ongoing</button></div>
+            <div class="wiz-nav"><button class="btn btn-ghost btn-sm" onclick="wizGo(2)">← Back</button><button class="btn btn-primary btn-sm" onclick="runMatch()">Find my matches →</button></div>
+          </div>
+          <div class="wiz-panel" data-panel="4" id="wizResults"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TALENT (landing: 3 featured only) -->
+<section id="talent" class="bg-grey" style="padding-top:0;">
+  <div class="wrap">
+    <div class="sec-head-row">
+      <div><span class="eyebrow">Featured talent</span><h2 style="margin-top:.6rem">Meet a few of our talent</h2></div>
+      <button class="btn btn-outline" onclick="location.href='catalog.html'">View all profiles →</button>
+    </div>
+    <div class="feat-grid" id="featGrid"></div>
+    <div class="feat-cta">
+      <button class="btn btn-primary btn-lg" onclick="location.href='catalog.html'">Browse all verified talent →</button>
+      <p style="color:var(--muted);font-size:.88rem;margin-top:12px;">12 verified SA students &amp; graduates across 6 ICT fields</p>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST -->
+<section id="trust" class="bg-grey" style="padding-top:0;">
+  <div class="wrap">
+    <div class="sec-head"><span class="eyebrow">Built-in protection</span><h2>Safe for both sides</h2></div>
+    <div class="safety">
+      <div class="safe-item"><div class="si"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6z"/><path d="M9 12l2 2 4-4"/></svg></div><h4>Escrow protection</h4><p>Funds held until work is approved.</p></div>
+      <div class="safe-item"><div class="si"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.5V8a2 2 0 00-2-2h-7l-2-3H4a2 2 0 00-2 2v12a2 2 0 002 2h7"/><circle cx="18" cy="18" r="3"/><path d="M18 16.5v1.5l1 1"/></svg></div><h4>Verified credentials</h4><p>Enrolment and transcripts checked.</p></div>
+      <div class="safe-item"><div class="si"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div><h4>Ratings &amp; reviews</h4><p>Transparent two-way feedback.</p></div>
+      <div class="safe-item"><div class="si"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><path d="M12 3l7 4v5c0 4-3 7-7 9-4-2-7-5-7-9V7z"/></svg></div><h4>Dispute resolution</h4><p>Mediation with secure evidence.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section style="padding-top:0;">
+  <div class="wrap">
+    <div class="cta-band">
+      <h2>Skilled students, ready to hire.</h2>
+      <p>Affordable, verified ICT talent — matched in minutes, paid through escrow.</p>
+      <div class="hero-cta"><button class="btn btn-primary btn-lg" onclick="openJob()">Post a job — it's free</button><button class="btn btn-light btn-lg" onclick="openCatalog()">Browse talent</button></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div><span class="brand"><span class="dot">iS</span><span>iSpani<small>ICT talent · ZA</small></span></span><p class="foot-about">Where verified ICT students and graduates meet the South African businesses that need them.</p></div>
+      <div><h5>Marketplace</h5><ul><li><a href="index.html#categories">Browse skills</a></li><li><a href="catalog.html">Find talent</a></li><li><a href="smart-match.html">Smart Match</a></li><li><a href="#" onclick="openJob();return false;">Post a job</a></li></ul></div>
+      <div><h5>For students</h5><ul><li><a href="index.html#how">How it works</a></li><li><a href="#" onclick="toast('Coming soon','Mentorship is on the roadmap.');return false;">Mentorship</a></li><li><a href="#" onclick="toast('Coming soon','Learning hub is on the roadmap.');return false;">Learning hub</a></li><li><a href="#" onclick="toast('Coming soon','Get paid via bank, PayPal or Wise.');return false;">Get paid</a></li></ul></div>
+      <div><h5>Company</h5><ul><li><a href="#">iSpani (Pty) Ltd</a></li><li><a href="#">About</a></li><li><a href="#">Trust &amp; safety</a></li><li><a href="#">Contact</a></li></ul></div>
+    </div>
+    <div class="foot-bottom"><span>© 2026 iSpani (Pty) Ltd · South Africa · Founder &amp; CEO, Taddy Mndawe</span><span class="meta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6z"/></svg>POPIA-aligned · prototype</span></div>
+  </div>
+</footer>
+
+
+<!-- Fixed bottom action bar (mobile) -->
+<div class="mobile-cta">
+  <button class="btn btn-primary btn-lg" onclick="openJob()">Post a job</button>
+  <button class="btn btn-outline btn-lg" onclick="openCatalog()">Find talent</button>
+</div>
+
+
+<!-- USER PROFILE OVERLAY -->
+<div class="profile-overlay" id="profileOverlay" role="dialog" aria-label="Your profile">
+  <div class="pf-head">
+    <button class="back-btn" onclick="closeProfilePage()" aria-label="Back to home">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      Back
+    </button>
+    <div class="ch-txt"><div class="eyebrow">Your profile</div><h3>Profile</h3></div>
+  </div>
+  <div class="pf-cover"></div>
+  <div class="pf-wrap" id="profileMount"></div>
+</div>
+
+<!-- SMART MATCH PAGE OVERLAY (mobile) -->
+<div class="wizpage-overlay" id="wizPageOverlay" role="dialog" aria-label="Smart Match" onclick="if(event.target===this)closeWizPage()">
+  <div class="wizpage-sheet">
+    <div class="wizpage-head">
+      <h3>Smart Match</h3>
+      <button class="close-x" onclick="closeWizPage()" aria-label="Close">×</button>
+    </div>
+    <div class="wizpage-mount" id="wizPageMount"></div>
+  </div>
+</div>
+
+<!-- TALENT CATALOG OVERLAY -->
+<div class="catalog-overlay" id="catalogOverlay" role="dialog" aria-label="Talent catalog">
+  <div class="catalog-head">
+    <button class="back-btn" onclick="closeCatalog()" aria-label="Back to home">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      Back
+    </button>
+    <div class="ch-txt">
+      <div class="eyebrow">Talent catalog</div>
+      <h3>All verified ICT talent</h3>
+    </div>
+  </div>
+  <div class="catalog-body">
+    <div class="wrap">
+      <div class="browse-grid">
+        <aside class="filters" aria-label="Filters">
+          <div class="search-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg><input type="text" id="searchInput" placeholder="Search name or skill…" oninput="renderTalent()" aria-label="Search talent"></div>
+          <div class="fgroup"><span class="flabel">Field</span><div id="filterCats"></div></div>
+          <div class="fgroup"><span class="flabel">Max rate — <span class="range-val" id="rateLabel">R400/hr</span></span><input type="range" id="rateRange" min="100" max="400" step="50" value="400" oninput="renderTalent()"></div>
+          <div class="fgroup"><span class="flabel">Status</span><label class="check"><input type="checkbox" id="fStudent" checked onchange="renderTalent()"> Current students</label><label class="check"><input type="checkbox" id="fGrad" checked onchange="renderTalent()"> Graduates</label></div>
+          <button class="btn btn-ghost btn-sm btn-block" style="margin-top:14px;" onclick="resetFilters()">Reset filters</button>
+        </aside>
+        <div>
+          <div class="browse-top"><span class="count" id="talentCount"></span><select id="sortSel" onchange="renderTalent()" aria-label="Sort talent"><option value="rating">Sort: Top rated</option><option value="low">Sort: Rate (low → high)</option><option value="high">Sort: Rate (high → low)</option></select></div>
+          <div class="talent-grid" id="talentGrid"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="overlay" id="overlay" onclick="if(event.target===this)closeModal()"><div class="modal" id="modal" role="dialog" aria-modal="true"></div></div>
+<div class="toast-wrap" id="toastWrap"></div>
+
+
+<script src="js/app.js"></script>
+<script type="module" src="js/firebase-config.js"></script>
+</body>
+</html>
